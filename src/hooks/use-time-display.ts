@@ -39,11 +39,11 @@ export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
    const [popoverTime, setPopoverTime] = useState<number>(() => formatPopoverTime(secondsLeft));
 
    // figure out how exactly timerIntervalRef works
-   const timerIntervalRef = useRef<number | NodeJS.Timeout | null>(null);
+   const timerIntervalRef = useRef<number | null>(null);
 
    useEffect(() => {
       timerIntervalRef.current = setInterval(decrementTime, 1000);
-      let leftMinutes = formatPopoverTime(secondsLeft);
+      const leftMinutes = formatPopoverTime(secondsLeft);
 
       if (leftMinutes !== popoverTime) {
          setPopoverTime(leftMinutes);
