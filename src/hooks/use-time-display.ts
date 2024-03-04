@@ -66,7 +66,7 @@ export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
                clearInterval(timerIntervalRef.current as number);
             }
          }
-      };
+      }
       //When the Popover was CLOSED - START the timer.
       if (isPopoverClosed && timerIntervalRef.current !== null) {
          clearInterval(timerIntervalRef.current);

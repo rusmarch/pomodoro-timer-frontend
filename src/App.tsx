@@ -49,7 +49,6 @@ function App() {
 
           </Routes>
 
-          <h2>Hello!</h2>
         </div>
 
       </BrowserRouter>
