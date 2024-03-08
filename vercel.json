@@ -2,14 +2,14 @@
     "version": 2,
     "builds": [
         {
-            "src": "/main.jsx",
+            "src": "/main.tsx",
             "use": "@vercel/node"
         }
     ],
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/main.jsx",
+            "dest": "/main.tsx",
             "methods":["GET","POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
             "headers":{
                 "Access-Control-Allow-Origin": "*"
