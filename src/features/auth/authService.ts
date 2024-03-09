@@ -15,7 +15,8 @@ const login =
    async (
       email: string, password: string
    ): Promise<AxiosResponse<AuthResponse>> => {
-      return $api.post<AuthResponse>('/login', { email, password });
+      // return $api.post<AuthResponse>('/login', { email, password });
+      return $api.post<AuthResponse>(`${API_URL}/login`, { email, password });
    };
 
 const logout = (): Promise<void> => {
