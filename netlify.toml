@@ -3,4 +3,3 @@
   to = "https://pt-server.pp.ua/api/login"
   status = 200
   force = true
-  proxy = true
