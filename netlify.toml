@@ -1,5 +1,6 @@
 [[redirects]]
-  from = "/api/login"
-  to = "https://pt-server.pp.ua/api/login"
+  from = "/api/*"
+  to = "https://pt-server.pp.ua/api/:splat"
   status = 200
   force = true
+  proxy = true
