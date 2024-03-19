@@ -1,0 +1,5 @@
+[[redirects]]
+  from = "/api/login"
+  to = "https://pt-server.pp.ua/api/login"
+  status = 200
+  force = true
