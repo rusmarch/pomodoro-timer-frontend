@@ -1,5 +1,0 @@
-[[redirects]]
-  from = "/api/*"
-  to = "http://pt-server.pp.ua:5000/:splat"
-  status = 200
-  force = true
