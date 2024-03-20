@@ -3,4 +3,4 @@
   to = "https://pt-server.pp.ua/:splat"
   status = 200
   force = true
-  headers = {X-From = "Netlify"}
+headers = { Access-Control-Allow-Origin = “*”, Authorization = “Bearer api-key”}
