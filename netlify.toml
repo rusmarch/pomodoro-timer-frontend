@@ -1,11 +1,11 @@
 [[redirects]]
-  from = "/*"
+  from = "/api/*"
   to = "https://pt-server.pp.ua/:splat"
   status = 200
   force = true
   headers = {X-From = "Netlify"}
 
 [[headers]]
-  for = "/*"
+  for = "/api/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
