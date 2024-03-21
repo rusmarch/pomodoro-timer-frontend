@@ -22,6 +22,7 @@ $api.interceptors.response.use((config) => {
    const originalRequest = error.config;
    if (error.response.status === 401 && error.config && error.config._isRetry) {
       try {
+         console.log('STARTING HADLING ERROR');
          const response = await axios.get<AuthResponse>(`${API_URL}/refresh`, 
          {withCredentials: true})
          console.log('/refresh has worked out')
