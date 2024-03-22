@@ -46,7 +46,6 @@ export const Home = () => {
       if (isAuth || user) {
          navigate('/')
       }
-      console.log('before reset');
       dispatch(reset());
    }, [isError, isAuth, user, message, navigate, dispatch])
 

@@ -24,7 +24,7 @@ function App() {
     if (localStorage.getItem('token')) {
       dispatch(checkAuth());
     }
-  })
+  },[])
 
   return (
     <>
