@@ -46,7 +46,7 @@ export const Register = () => {
       }
       // Redirect when logged in (if it isAuth)
       if (isAuth || user) {
-         navigate('/')
+         navigate('/tasks')
       }
       dispatch(reset());
    }, [isError, isAuth, user, message, navigate, dispatch]);
