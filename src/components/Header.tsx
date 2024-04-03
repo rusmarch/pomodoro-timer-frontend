@@ -4,11 +4,7 @@ import AppBar from '@mui/material/AppBar';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import {
-   logout,
-   reset,
-   selectUser
-} from '../features/auth/authSlice';
+import { logout, reset, selectUser } from '../features/auth/authSlice';
 import { AccountPopover } from './account-popover';
 import { SettingsPopover } from './settings-popover';
 
@@ -23,7 +19,6 @@ export const Header = () => {
       dispatch(reset());
       navigate('/');
    }
-
 
    return (
       <AppBar
@@ -41,9 +36,7 @@ export const Header = () => {
             >
                <div>
                   {/* <Link to='/'>Pomodoro App</Link> */}
-
                   <AccountPopover />
-
                </div>
                <ul>
                   {user ? (
@@ -72,7 +65,6 @@ export const Header = () => {
 
                </ul>
 
-               <SettingsPopover />
             </Stack>
 
             <Stack

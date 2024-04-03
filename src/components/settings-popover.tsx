@@ -1,16 +1,13 @@
-// import Avatar from '@mui/material/Avatar';
-
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import SettingsRoundedIcon from '@mui/icons-material/SettingsRounded';
+import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-//redux
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
 import {
   selectSettings,
@@ -18,16 +15,10 @@ import {
   selectIsWorking,
   selectIsPaused,
 } from '../features/timer/timerSlice';
-// import { varHover } from 'src/components/animate';
 
-// import { useTimeDisplay } from '../hooks/use-time-display';
 import { usePopover } from '../hooks/use-popover';
 import { TimerSettings } from '../types/timer';
 import { CustomPopover } from './custom-popover/custom-popover';
-
-// import { useSnackbar } from 'src/components/snackbar';
-// import { useRouter } from 'src/routes/hooks';
-// import { paths } from 'src/routes/paths';
 
 // ----------------------------------------------------------------------
 
@@ -37,13 +28,9 @@ export const SettingsPopover = () => {
   const isWorking = useAppSelector(selectIsWorking);
   const isPaused = useAppSelector(selectIsPaused);
   const dispatch = useAppDispatch();
+  const popover = usePopover();
 
   const settingsDisabled = isWorking || isPaused;
-  // const { popoverTime } = useTimeDisplay();
-  // const router = useRouter();
-  // const { user } = useMockedUser();
-  // const { logout } = useAuthContext();
-  // const { enqueueSnackbar } = useSnackbar();
 
   const settingsList = [
     {
@@ -73,7 +60,6 @@ export const SettingsPopover = () => {
     localStorage.setItem('timerSettings', JSON.stringify(updatedSettings));
   };
 
-  const popover = usePopover();
 
   return (
     <>
@@ -84,8 +70,7 @@ export const SettingsPopover = () => {
           height: 40,
         }}
       >
-        <SettingsRoundedIcon color='error' />
-
+        <SettingsOutlinedIcon color='error' />
       </IconButton>
 
       <CustomPopover
