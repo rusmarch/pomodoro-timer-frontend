@@ -12,7 +12,7 @@ import {
    login
 } from '../features/auth/authSlice';
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import { Spinner } from '../components/Spinner';
+// import { Spinner } from '../components/Spinner';
 
 type FormData = {
    email: string,
@@ -67,7 +67,7 @@ export const Login = () => {
    }
 
    if (isLoading) {
-      return <Spinner />
+      return /* <Spinner /> */;
    }
 
    return (

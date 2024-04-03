@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import { Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
-import { Spinner } from '../components/Spinner';
+// import { Spinner } from '../components/Spinner';
 import { BackButton } from '../components/BackButton';
 import { TaskItem } from '../components/task-item';
 import { TaskForm } from '../components/TaskForm';
@@ -73,7 +73,7 @@ export const Tasks = () => {
    );
 
    if (isLoading) {
-      return <Spinner />;
+      return /* <Spinner /> */ ;
    }
 
    return (
