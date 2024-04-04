@@ -1,8 +1,15 @@
-// import { Link } from "react-router-dom"
+import Card from "@mui/material/Card";
+import Stack from "@mui/material/Stack";
+import Box from "@mui/material/Box";
+import Checkbox from '@mui/material/Checkbox';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
+
 import { Task } from "../types/task";
-import { Checkbox } from './Checkbox';
+// import { Checkbox } from './Checkbox';
 import { TrackTaskButton } from './track-task-button';
 import { RiDeleteBinLine } from 'react-icons/ri'
+import { BsCircle } from "react-icons/bs";
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import {
    selectCurrentTask,
@@ -18,7 +25,7 @@ import {
 } from '../features/timer/timerSlice';
 
 type Props = {
-   task: Task,
+   task: Task
 }
 
 export const TaskItem = ({ task }: Props) => {
@@ -38,8 +45,8 @@ export const TaskItem = ({ task }: Props) => {
    }
 
    const trackTask = () => {
-         dispatch(startTrackingTask());
-         dispatch(setCurrentTask(task));
+      dispatch(startTrackingTask());
+      dispatch(setCurrentTask(task));
    };
 
    const onRemove = (id: string) => {
@@ -47,24 +54,37 @@ export const TaskItem = ({ task }: Props) => {
    };
 
    return (
-      <div className="task">
-         <div className="task-content">
-            <Checkbox isChecked={task.complete} onChange={completeTask} />
-            <TrackTaskButton isTaskTracking={isTaskTracking} onChange={trackTask} />
+      <Card
+         variant="outlined"
+         sx={{
+            display: 'flex',
+            direction: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            mb: 1,
+            px: 2,
+            py: 1,
+            borderRadius: 2,
+            boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
+         }} >
+         <Stack display="flex" direction="row">
+            <Checkbox
+               checked={task.complete}
+               onChange={completeTask}
+               icon={<BsCircle size='20px' />}
+               checkedIcon={<CheckCircleIcon color="success" />}
+               disableRipple
+               sx={{ p: .5 }}
+            />
+            <TrackTaskButton isTaskTracking={isTaskTracking} onTrack={trackTask} />
             <div>{task.title}: <b>{task.totalTime}</b></div>
-         </div>
-         <div className="task-actions">
+         </Stack>
+         <Box>
             <RiDeleteBinLine
                className="task-delete"
                onClick={() => onRemove(task._id)}
             />
-            {/* <Link
-               to={`/task/${task.id}`}
-               className="btn btn-reverse btn-sm"
-            >
-               View
-            </Link> */}
-         </div>
-      </div>
-   )
+         </Box>
+      </Card>
+   );
 };

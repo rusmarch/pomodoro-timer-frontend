@@ -1,25 +1,21 @@
-import { ChangeEvent } from 'react';
-import startImg from '../assets/task-start.png';
-import runningImg from '../assets/task-running.png';
+import IconButton from '@mui/material/IconButton';
+import PlayCircleIcon from '@mui/icons-material/PlayCircle';
+import TimerIcon from '@mui/icons-material/Timer';
 
-type StartButtonProps = {
+type TrackButtonProps = {
    isTaskTracking: boolean,
-   onChange: (value: boolean) => void,
+   onTrack: () => void,
 };
 
-export const TrackTaskButton = ({ onChange, isTaskTracking }: StartButtonProps) => {
+export const TrackTaskButton = ({ onTrack, isTaskTracking }: TrackButtonProps) => {
 
-   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-      onChange(e.target.checked);
-   };
+   const iconStyle = { fontSize: 30 }
 
    return (
-      <input
-         type="checkbox"
-         checked={isTaskTracking}
-         onChange={handleChange}
-         className="task-icon task-tracking"
-         style={{ backgroundImage: `url(${isTaskTracking ? runningImg : startImg})` }}
-      />
-   )
+      <IconButton color='error' onClick={isTaskTracking ? undefined : onTrack}>
+         {isTaskTracking
+            ? <TimerIcon sx={iconStyle} />
+            : <PlayCircleIcon sx={iconStyle} />}
+       </IconButton>
+   );
 }

@@ -4,7 +4,6 @@ import { Typography } from '@mui/material';
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 // import { Spinner } from '../components/Spinner';
-import { BackButton } from '../components/BackButton';
 import { TaskItem } from '../components/task-item';
 import { TaskForm } from '../components/TaskForm';
 import { TimerPopover } from '../components/timer-popover';
@@ -78,7 +77,6 @@ export const Tasks = () => {
 
    return (
       <>
-         <BackButton /* url='/' */ />
          <h1>Tasks List</h1>
          <TaskForm />
 
