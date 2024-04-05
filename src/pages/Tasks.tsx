@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 
-import { Typography } from '@mui/material';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 // import { Spinner } from '../components/Spinner';
@@ -56,11 +57,11 @@ export const Tasks = () => {
    };
 
    const renderTaskList = (
-      <div className="tickets">
+      <Stack className="tickets">
          {filteredTasks.map(task => (
             !task.complete && <TaskItem key={task._id} task={task} />
          ))}
-      </div>
+      </Stack>
    );
 
    const renderCompletedTaskList = (
@@ -72,7 +73,7 @@ export const Tasks = () => {
    );
 
    if (isLoading) {
-      return /* <Spinner /> */ ;
+      return /* <Spinner /> */;
    }
 
    return (

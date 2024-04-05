@@ -1,15 +1,10 @@
 import Card from "@mui/material/Card";
 import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
-
-import { Task } from "../types/task";
-// import { Checkbox } from './Checkbox';
-import { TrackTaskButton } from './track-task-button';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { BsCircle } from "react-icons/bs";
+
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 import {
    selectCurrentTask,
@@ -23,6 +18,10 @@ import {
    selectIsBreak,
    startTrackingTask,
 } from '../features/timer/timerSlice';
+
+import { Task } from "../types/task";
+import { TrackTaskButton } from './track-task-button';
+import { IconButton } from "@mui/material";
 
 type Props = {
    task: Task
@@ -50,7 +49,7 @@ export const TaskItem = ({ task }: Props) => {
    };
 
    const onRemove = (id: string) => {
-      dispatch(removeTask(id))
+      dispatch(removeTask(id));
    };
 
    return (
@@ -79,12 +78,9 @@ export const TaskItem = ({ task }: Props) => {
             <TrackTaskButton isTaskTracking={isTaskTracking} onTrack={trackTask} />
             <div>{task.title}: <b>{task.totalTime}</b></div>
          </Stack>
-         <Box>
-            <RiDeleteBinLine
-               className="task-delete"
-               onClick={() => onRemove(task._id)}
-            />
-         </Box>
+         <IconButton onClick={() => onRemove(task._id)} >
+            <RiDeleteBinLine size='20px'/>
+         </IconButton>
       </Card>
    );
-};
+}
