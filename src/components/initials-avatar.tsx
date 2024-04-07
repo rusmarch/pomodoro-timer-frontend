@@ -4,7 +4,7 @@ import { stringAvatar } from '../utils/avatar-name';
 // ----------------------------------------------------------------------
 
 type Props = AvatarProps & {
-  title: string
+  title?: string
 };
 
 export const InitialsAvatar = ({ title, ...other }: Props) => {
@@ -12,7 +12,7 @@ export const InitialsAvatar = ({ title, ...other }: Props) => {
   return (
     <Avatar
       alt={title}
-      {...stringAvatar(title)}
+      { ...stringAvatar(title)}
       {...other}
     />
   );

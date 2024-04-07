@@ -1,24 +1,27 @@
 import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-import { Link, useNavigate } from 'react-router-dom';
-import { FaSignInAlt, FaSignOutAlt, FaUser } from 'react-icons/fa';
-import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import { logout, reset, selectUser } from '../features/auth/authSlice';
+import { Link } from 'react-router-dom';
+import { FaSignInAlt, FaUser } from 'react-icons/fa';
+import { useAppSelector, /* useAppDispatch */ } from '../hooks/redux-hooks';
+import { /* logout, reset, */ selectUser } from '../features/auth/authSlice';
 import { AccountPopover } from './account-popover';
 import { SettingsPopover } from './settings-popover';
 
 export const Header = () => {
 
    const user = useAppSelector(selectUser);
-   const navigate = useNavigate();
-   const dispatch = useAppDispatch();
+   // const navigate = useNavigate();
+   // const dispatch = useAppDispatch();
 
-   const onLogout = () => {
-      dispatch(logout());
-      dispatch(reset());
-      navigate('/');
-   }
+   // const onLogout = () => {
+   //    dispatch(logout());
+   //    dispatch(reset());
+   //    navigate('/');
+   // }
 
    return (
       <AppBar>
@@ -29,39 +32,29 @@ export const Header = () => {
          >
             <Stack
                direction="row"
-               spacing={2}
+               spacing={1}
             >
                <div>
-                  {/* <Link to='/'>Pomodoro App</Link> */}
                   <AccountPopover />
                </div>
-               <ul>
+
+               <Box alignContent="center">
                   {user ? (
-                     <li>
-                        <button
-                           className='btn'
-                           onClick={onLogout}
-                        >
-                           <FaSignOutAlt />Logout
-                        </button>
-                     </li>
-                  ) : (
                      <>
-                        <li>
-                           <Link to='/login'>
-                              <FaSignInAlt />Login
-                           </Link>
-                        </li>
-                        <li>
-                           <Link to='/register'>
-                              <FaUser />Register
-                           </Link>
-                        </li>
+                        <Typography variant="subtitle1" noWrap>
+                           {user?.name}
+                        </Typography>
+                     </>) : (
+                     <>
+                        <Link to='/login'>
+                           <FaSignInAlt />Login
+                        </Link>
+                        <Link to='/register'>
+                           <FaUser />Register
+                        </Link>
                      </>
                   )}
-
-               </ul>
-
+               </Box>
             </Stack>
 
             <Stack

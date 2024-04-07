@@ -83,7 +83,7 @@ export const SettingsPopover = () => {
         }}
         sx={{ width: 250 }}
       >
-        <Stack sx={{ pl: 1.5, py: 1 }} >
+        <Stack sx={{ pl: 1.5, py: 1, backgroundColor: 'primary.main' }} >
           <Box>
             <Typography variant="subtitle1">Timer Settings</Typography>
             {/* <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>

@@ -4,7 +4,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
-import { ListItemIcon, MenuList } from '@mui/material';
+import { Avatar, ListItemIcon, MenuList } from '@mui/material';
 import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
@@ -26,23 +26,22 @@ export const AccountPopover = () => {
   const navigate = useNavigate();
   const popover = usePopover();
 
-    const onLogout = (): void => {
+  const onLogout = (): void => {
     dispatch(logout());
     dispatch(reset());
     navigate('/');
   }
-  
+
   return (
     <>
-      <IconButton
-        onClick={popover.onOpen}
-        sx={{
-          width: 40,
-          height: 40,
-        }}
-      >
-        {user && <InitialsAvatar title={user.name} />}
-      </IconButton>
+      {user
+        ? <IconButton
+          onClick={popover.onOpen}
+          sx={{ width: 40, height: 40 }} >
+          {user && <InitialsAvatar title={user?.name} />}
+        </IconButton>
+        : <Avatar />
+    }
 
       <CustomPopover
         open={popover.open}
@@ -62,7 +61,7 @@ export const AccountPopover = () => {
         }}
       >
 
-        <Stack sx={{ px: 1.5 }} >
+        <Stack sx={{ px: 1.5, backgroundColor: 'primary.main' }} >
           <Box sx={{ px: 2, py: 1.5 }}>
             <Typography variant="subtitle1" noWrap>
               {user?.name}

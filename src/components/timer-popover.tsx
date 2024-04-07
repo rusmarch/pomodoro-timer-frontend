@@ -16,7 +16,7 @@ export const TimerPopover = () => {
    const isBreak = useAppSelector(selectIsBreak);
 
    const popover = usePopover();
-   const { popoverTime } = useTimeDisplay(Boolean(!popover.open));
+   const { popoverTime } = useTimeDisplay();
 
    return (
       <>
