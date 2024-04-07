@@ -7,7 +7,6 @@ import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { RiDeleteBinLine } from 'react-icons/ri'
 import { BsCircle } from "react-icons/bs";
-// import { GiTomato } from "react-icons/gi";
 import TimerIcon from '@mui/icons-material/Timer';
 
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';

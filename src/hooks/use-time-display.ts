@@ -25,7 +25,7 @@ type ReturnType = {
    percentage: number,
 };
 
-export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
+export const useTimeDisplay = (): ReturnType => {
 
    const secondsLeft = useAppSelector(selectSecondsLeft);
    const isBreak = useAppSelector(selectIsBreak);
@@ -67,10 +67,6 @@ export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
             }
          }
       }
-      //When the Popover was CLOSED - START the timer.
-      if (isPopoverClosed && timerIntervalRef.current !== null) {
-         clearInterval(timerIntervalRef.current);
-      }
 
       return () => clearInterval(timerIntervalRef.current as number);
 
@@ -80,10 +76,9 @@ export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
       isBreak,
       isWorking,
       dispatch,
-      isPopoverClosed,
       currentTask,
-      // workedTime,
       settings,
+      // workedTime,
    ]);
 
    let timerTime = formatTimerTime(secondsLeft);

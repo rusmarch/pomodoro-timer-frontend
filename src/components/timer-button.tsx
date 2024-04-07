@@ -27,14 +27,14 @@ export const TimerButton = ({
       }}
       >
          {!isWorking && !isPaused
-            ? <Button onClick={onStartPause}>Start</Button>
+            ? <Button color='info' variant='outlined' onClick={onStartPause}>Start</Button>
             : !isPaused
-               ? <Button onClick={onStartPause}>
+               ? <Button color='info' variant='outlined' onClick={onStartPause}>
                   {!isBreak ? "Pause" : "Skip break"}
                </Button>
                : <Box>
-                  <Button onClick={onStartPause}>Continue</Button>
-                  <Button onClick={onStop}>Stop</Button>
+                  <Button color='info' variant='outlined'onClick={onStartPause}>Continue</Button>
+                  <Button color='info' variant='outlined' onClick={onStop}>Stop</Button>
                </Box>
          }
       </Stack >
