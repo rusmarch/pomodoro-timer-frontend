@@ -25,7 +25,7 @@ type ReturnType = {
    percentage: number,
 };
 
-export const useTimeDisplay = (): ReturnType => {
+export const useTimeDisplay = (isPopoverClosed?: boolean): ReturnType => {
 
    const secondsLeft = useAppSelector(selectSecondsLeft);
    const isBreak = useAppSelector(selectIsBreak);
@@ -75,9 +75,10 @@ export const useTimeDisplay = (): ReturnType => {
       popoverTime,
       isBreak,
       isWorking,
-      dispatch,
+      isPopoverClosed,
       currentTask,
       settings,
+      dispatch,
       // workedTime,
    ]);
 
