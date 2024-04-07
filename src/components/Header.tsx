@@ -21,14 +21,11 @@ export const Header = () => {
    }
 
    return (
-      <AppBar
-         position="fixed"
-         color="default"
-      >
+      <AppBar>
          <Stack
             direction="row"
             justifyContent="space-between"
-            sx={{ px: 2, py: 1 }}
+            sx={{ px: 2, py: 1, backgroundColor: 'primary.main' }}
          >
             <Stack
                direction="row"

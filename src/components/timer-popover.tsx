@@ -67,12 +67,13 @@ export const TimerPopover = () => {
          >
             <Box
                sx={{
-                  width: '100vw',
-                  height: '100vh',
+                  width: '100%',
+                  height: '100%',
                   p: 2,
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
+                  backgroundColor: 'primary.main'
                }}
             >
                <Timer />

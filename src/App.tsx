@@ -20,9 +20,12 @@ import { Tasks } from './pages/Tasks'
 const darkTheme = createTheme({
   palette: {
     mode: 'dark',
-    // primary: {
-    //   main: '#181a1b',
-    // },
+    primary: {
+      main: '#181a1b',
+    },
+    secondary: {
+      main: '#181a1b',
+    },
   }
 });
 
