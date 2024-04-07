@@ -4,7 +4,7 @@ import { stringAvatar } from '../utils/avatar-name';
 // ----------------------------------------------------------------------
 
 type Props = AvatarProps & {
-  title?: string
+  title: string
 };
 
 export const InitialsAvatar = ({ title, ...other }: Props) => {
