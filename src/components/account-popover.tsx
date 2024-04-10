@@ -11,7 +11,6 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import { usePopover } from '../hooks/use-popover';
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import { useNavigate } from 'react-router-dom';
 import { selectUser, logout, reset } from '../features/auth/authSlice';
 
 import { InitialsAvatar } from './initials-avatar';
@@ -23,13 +22,11 @@ export const AccountPopover = () => {
 
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const popover = usePopover();
 
   const onLogout = (): void => {
     dispatch(logout());
     dispatch(reset());
-    navigate('/');
   }
 
   return (

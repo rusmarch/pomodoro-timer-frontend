@@ -1,7 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
 import { FaSignInAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import {
    selectUser,
    selectIsAuth,
@@ -32,7 +31,6 @@ export const Login = () => {
    const isError = useAppSelector(selectIsError);
    const message = useAppSelector(selectMessage);
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
 
    const { email, password } = formData;
 
@@ -42,10 +40,10 @@ export const Login = () => {
       }
       // Redirect when logged in (if it isAuth)
       if (isAuth || user) {
-         navigate('/tasks')
+         // navigate('/tasks')
       }
       dispatch(reset());
-   }, [isError, isAuth, user, message, navigate, dispatch])
+   }, [isError, isAuth, user, message, dispatch])
 
 
    const onChange = (e: ChangeEvent<HTMLInputElement>) => {

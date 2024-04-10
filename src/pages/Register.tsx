@@ -1,7 +1,6 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from "react";
 import { FaUser } from "react-icons/fa";
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
 import { useAppSelector, useAppDispatch } from "../hooks/redux-hooks";
 import {
    selectUser,
@@ -36,7 +35,6 @@ export const Register = () => {
    const isError = useAppSelector(selectIsError);
    const message = useAppSelector(selectMessage);
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
 
    const { name, email, password, password2 } = formData;
 
@@ -46,10 +44,10 @@ export const Register = () => {
       }
       // Redirect when logged in (if it isAuth)
       if (isAuth || user) {
-         navigate('/tasks')
+         // navigate('/tasks')
       }
       dispatch(reset());
-   }, [isError, isAuth, user, message, navigate, dispatch]);
+   }, [isError, isAuth, user, message, dispatch]);
 
    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
       setFormData((prev) => ({

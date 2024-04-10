@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { FaQuestionCircle, FaTicketAlt } from 'react-icons/fa';
 
 import { toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import {
    selectUser,
    selectIsAuth,
@@ -34,7 +34,7 @@ export const Home = () => {
    const isError = useAppSelector(selectIsError);
    const message = useAppSelector(selectMessage);
    const dispatch = useAppDispatch();
-   const navigate = useNavigate();
+   // const navigate = useNavigate();
 
    const { email, password } = formData;
 
@@ -44,10 +44,10 @@ export const Home = () => {
       }
       // Redirect when logged in (if it isAuth)
       if (isAuth || user) {
-         navigate('/tasks')
+         // navigate('/tasks')
       }
       dispatch(reset());
-   }, [isError, isAuth, user, message, navigate, dispatch])
+   }, [isError, isAuth, user, message, /* navigate, */ dispatch])
 
 
    const onChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -79,13 +79,13 @@ export const Home = () => {
             <p>Please choose from option below</p>
          </section>
 
-         <Link to='/new-task' className='btn btn-reverse btn-block'>
+         {/* <Link to='/new-task' className='btn btn-reverse btn-block'>
             <FaQuestionCircle />Create New Task
-         </Link>
+         </Link> */}
 
-         <Link to='/tasks' className='btn btn-block'>
+         {/* <Link to='/tasks' className='btn btn-block'>
             <FaTicketAlt />View My Tasks
-         </Link>
+         </Link> */}
          <section className="form">
             <form onSubmit={onSubmit}>
                <div className="form-group">

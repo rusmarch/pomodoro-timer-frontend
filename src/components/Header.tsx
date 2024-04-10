@@ -2,10 +2,7 @@ import Stack from '@mui/material/Stack';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-// import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-import { Link } from 'react-router-dom';
-import { FaSignInAlt, FaUser } from 'react-icons/fa';
 import { useAppSelector, /* useAppDispatch */ } from '../hooks/redux-hooks';
 import { /* logout, reset, */ selectUser } from '../features/auth/authSlice';
 import { AccountPopover } from './account-popover';
@@ -14,14 +11,6 @@ import { SettingsPopover } from './settings-popover';
 export const Header = () => {
 
    const user = useAppSelector(selectUser);
-   // const navigate = useNavigate();
-   // const dispatch = useAppDispatch();
-
-   // const onLogout = () => {
-   //    dispatch(logout());
-   //    dispatch(reset());
-   //    navigate('/');
-   // }
 
    return (
       <AppBar>
@@ -46,12 +35,12 @@ export const Header = () => {
                         </Typography>
                      </>) : (
                      <>
-                        <Link to='/login'>
+                        {/* <Link to='/login'>
                            <FaSignInAlt />Login
                         </Link>
                         <Link to='/register'>
                            <FaUser />Register
-                        </Link>
+                        </Link> */}
                      </>
                   )}
                </Box>
