@@ -1,5 +1,22 @@
 import { useState, useEffect, ChangeEvent, FormEvent } from 'react'
-import { FaSignInAlt } from 'react-icons/fa';
+
+import IconButton from '@mui/material/IconButton';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack';
+import Card from '@mui/material/Card';
+import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+// import Button from '@mui/material/Button';
+// import GoogleIcon from '@mui/icons-material/Google';
+// import { FaFacebookF } from "react-icons/fa";
+// import TwitterIcon from '@mui/icons-material/Twitter';
+import Divider from '@mui/material/Divider';
+import InputAdornment from '@mui/material/InputAdornment';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import LoadingButton from '@mui/lab/LoadingButton';
+
+// import { FaSignInAlt } from 'react-icons/fa';
 import { toast } from 'react-toastify';
 import {
    selectUser,
@@ -11,6 +28,9 @@ import {
    login
 } from '../features/auth/authSlice';
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
+import { usePopover } from '../hooks/use-popover';
+
+import { CustomPopover } from '../components/custom-popover/custom-popover';
 // import { Spinner } from '../components/Spinner';
 
 type FormData = {
@@ -24,6 +44,7 @@ export const Login = () => {
       email: '',
       password: '',
    });
+   const [showPassword, setShowPassword] = useState<boolean>(false);
 
    const user = useAppSelector(selectUser);
    const isAuth = useAppSelector(selectIsAuth);
@@ -31,8 +52,8 @@ export const Login = () => {
    const isError = useAppSelector(selectIsError);
    const message = useAppSelector(selectMessage);
    const dispatch = useAppDispatch();
-
-   const { email, password } = formData;
+   const popover = usePopover();
+   // const { email, password } = formData;
 
    useEffect(() => {
       if (isError) {
@@ -55,13 +76,7 @@ export const Login = () => {
 
    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-
-      const userData = {
-         email,
-         password
-      }
-
-      dispatch(login(userData));
+      dispatch(login(formData));
    }
 
    if (isLoading) {
@@ -70,41 +85,197 @@ export const Login = () => {
 
    return (
       <>
-         <section className="heading">
-            <h1><FaSignInAlt />Login</h1>
-            <p>Please log in to get support</p>
-         </section>
-         <section className="form">
-            <form onSubmit={onSubmit}>
-               <div className="form-group">
-                  <input
-                     className="form-control"
-                     type="email"
-                     name="email"
-                     placeholder="Enter your email"
-                     required
-                     id="email"
-                     value={email}
-                     onChange={onChange}
-                  />
-               </div>
-               <div className="form-group">
-                  <input
-                     className="form-control"
-                     type="password"
-                     name="password"
-                     placeholder="Enter your password"
-                     required
-                     id="password"
-                     value={password}
-                     onChange={onChange}
-                  />
-               </div>
-               <div className="form-group">
-                  <button className="btn btn-block">Submit</button>
-               </div>
-            </form>
-         </section>
+         <IconButton onClick={popover.onOpen}>
+            <Typography>
+               Login
+            </Typography>
+         </IconButton>
+         <CustomPopover
+            open={popover.open}
+            onClose={popover.onClose}
+            anchorEl={popover.open}
+            anchorOrigin={{
+               vertical: 'bottom',
+               horizontal: 'right',
+            }}
+            slotProps={{
+               paper: {
+                  sx: {
+                     width: 250,
+                     overflow: 'inherit',
+                  },
+               },
+            }}
+         >
+
+            <Stack
+               alignItems="center"
+               justifyContent="center"
+               sx={{ height: 1, backgroundColor: 'primary.main' }}
+            >
+               <Card sx={{ p: 5, width: 1, maxWidth: 420, /* backgroundColor: 'primary' */ }} >
+
+                  <Typography variant="h4">Sign In</Typography>
+                  <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
+                     Don’t have an account?
+                     <Link color="info" variant="subtitle2" underline="hover" sx={{ ml: .5 }}>
+                        Get started
+                     </Link>
+                  </Typography>
+
+                  {/* <Stack direction="row" spacing={2}>
+                     <Button
+                        fullWidth
+                        size="large"
+                        color="inherit"
+                        variant="outlined"
+                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
+                     >
+                        <GoogleIcon color="error" />
+                     </Button>
+
+                     <Button
+                        fullWidth
+                        size="large"
+                        color="inherit"
+                        variant="outlined"
+                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
+                     >
+                        <FaFacebookF size={20} color="#2196f3" />
+                     </Button>
+
+                     <Button
+                        fullWidth
+                        size="large"
+                        color="inherit"
+                        variant="outlined"
+                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
+                     >
+                        <TwitterIcon color="info" />
+                     </Button>
+                  </Stack> */}
+
+                  <Divider sx={{ my: 3 }}>
+                     <Typography variant="body2" sx={{ color: 'text.secondary' }}>
+                        OR
+                     </Typography>
+                  </Divider>
+
+                  <form onSubmit={onSubmit}>
+                     <Stack spacing={3}>
+                        <TextField name="email" label="Email address" onChange={onChange} />
+
+                        <TextField
+                           name="password"
+                           label="Password"
+                           onChange={onChange}
+                           type={showPassword ? 'text' : 'password'}
+                           InputProps={{
+                              endAdornment: (
+                                 <InputAdornment position="end">
+                                    <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                                       {showPassword
+                                          ? <VisibilityIcon color='disabled' />
+                                          : <VisibilityOffIcon color='disabled' />}
+                                    </IconButton>
+                                 </InputAdornment>
+                              ),
+                           }}
+                        />
+                     </Stack>
+
+                     {/* <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
+                        <Link color="info" variant="subtitle2" underline="hover">
+                           Forgot password?
+                        </Link>
+                     </Stack> */}
+
+                     <LoadingButton
+                        fullWidth
+                        size="large"
+                        type="submit"
+                        variant="contained"
+                        color="primary"
+                        onClick={() => onSubmit}
+                     >
+                        Login
+                     </LoadingButton>
+
+                  </form>
+               </Card>
+            </Stack>
+         </CustomPopover>
       </>
-   )
+   );
 }
+
+// ================================================================================u=
+
+import React, { useState } from 'react';
+import { Button, Container, Grid, Link, TextField, Typography } from '@mui/material';
+
+const LoginForm: React.FC = () => {
+  const [isLoginForm, setIsLoginForm] = useState(true);
+
+  const handleToggleForm = () => {
+    setIsLoginForm(!isLoginForm);
+  };
+
+  return (
+    <Container maxWidth="sm">
+      <Grid container justifyContent="center" alignItems="center" style={{ height: '100vh' }}>
+        <Grid item>
+          <Typography variant="h4" gutterBottom>
+            {isLoginForm ? 'Login' : 'Register'}
+          </Typography>
+          <form>
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="username"
+              label="Username"
+              name="username"
+              autoFocus
+            />
+            <TextField
+              variant="outlined"
+              margin="normal"
+              required
+              fullWidth
+              id="password"
+              label="Password"
+              name="password"
+              type="password"
+            />
+            {!isLoginForm && (
+              <TextField
+                variant="outlined"
+                margin="normal"
+                required
+                fullWidth
+                id="confirmPassword"
+                label="Confirm Password"
+                name="confirmPassword"
+                type="password"
+              />
+            )}
+            <Button type="submit" fullWidth variant="contained" color="primary">
+              {isLoginForm ? 'Sign In' : 'Sign Up'}
+            </Button>
+          </form>
+          <Grid container justifyContent="center" style={{ marginTop: '1rem' }}>
+            <Grid item>
+              <Link href="#" variant="body2" onClick={handleToggleForm}>
+                {isLoginForm ? "Don't have an account? Sign Up" : 'Already have an account? Sign In'}
+              </Link>
+            </Grid>
+          </Grid>
+        </Grid>
+      </Grid>
+    </Container>
+  );
+};
+
+export default LoginForm;
