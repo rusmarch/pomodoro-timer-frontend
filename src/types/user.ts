@@ -1,11 +1,16 @@
-export type User = {
-  id: string,
-  name: string,
-  email: string,
+export type LoginData = {
+   email: string,
+   password: string,
 };
 
-export type UserRegisterData = Omit<User, 'id'> & {
-   password: string
+export type RegisterData = LoginData & {
+   name: string,
 };
 
-export type UserLoginData = Omit<UserRegisterData, 'id' | 'name'>;
+export type RegisterFormData = RegisterData & {
+   password2: string,
+};
+
+export type User = Omit<RegisterData, 'password'> & {
+  id: string
+};

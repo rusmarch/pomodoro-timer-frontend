@@ -6,10 +6,6 @@ import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import TextField from '@mui/material/TextField';
 import Link from '@mui/material/Link';
-// import Button from '@mui/material/Button';
-// import GoogleIcon from '@mui/icons-material/Google';
-// import { FaFacebookF } from "react-icons/fa";
-// import TwitterIcon from '@mui/icons-material/Twitter';
 import Divider from '@mui/material/Divider';
 import InputAdornment from '@mui/material/InputAdornment';
 import VisibilityIcon from '@mui/icons-material/Visibility';
@@ -24,25 +20,18 @@ import {
    selectIsError,
    selectMessage,
    reset,
-   login
+   register,
 } from '../features/auth/authSlice';
 import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
+import { RegisterData, RegisterFormData } from '../types/user';
 
 // import { Spinner } from '../components/Spinner';
 
-type FormData = {
-   email: string,
-   password: string,
+type Props = {
+   onToggleForm: VoidFunction;
 };
 
-export const AuthForm = () => {
-
-   const [formData, setFormData] = useState<FormData>({
-      email: '',
-      password: '',
-   });
-   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isLoginForm, setIsLoginForm] = useState<boolean>(true);
+export const RegisterForm = ({ onToggleForm }: Props) => {
 
    const user = useAppSelector(selectUser);
    const isAuth = useAppSelector(selectIsAuth);
@@ -50,7 +39,16 @@ export const AuthForm = () => {
    const isError = useAppSelector(selectIsError);
    const message = useAppSelector(selectMessage);
    const dispatch = useAppDispatch();
-   // const { email, password } = formData;
+
+   const [formData, setFormData] = useState<RegisterFormData>({
+      email: '',
+      name: '',
+      password: '',
+      password2: '',
+   });
+
+   const [showPassword, setShowPassword] = useState<boolean>(false);
+   const { email, name, password, password2 } = formData;
 
    useEffect(() => {
       if (isError) {
@@ -73,8 +71,18 @@ export const AuthForm = () => {
 
    const onSubmit = (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      dispatch(login(formData));
-   }
+
+      if (password !== password2) {
+         toast.error('Passwords do not match');
+      } else {
+         const registerData: RegisterData = {
+            name,
+            email,
+            password,
+         };
+         dispatch(register(registerData));
+      }
+   };
 
    if (isLoading) {
       return /* <Spinner /> */;
@@ -87,56 +95,26 @@ export const AuthForm = () => {
             justifyContent="center"
             sx={{ height: 1, backgroundColor: 'primary.main' }}
          >
-            <Card sx={{ p: 5, width: 1, maxWidth: 420, /* backgroundColor: 'primary' */ }} >
+            <Card sx={{ p: 5, width: 1, maxWidth: 420 }} >
 
-               <Typography variant="h4">Sign In</Typography>
-               <Typography variant="body2" sx={{ mt: 2, mb: 5 }}>
-                  Don’t have an account?
-                  <Link color="info" variant="subtitle2" underline="hover" sx={{ ml: .5 }}>
-                     Get started
+               <Typography variant="h4">Sign Up</Typography>
+               <Typography variant="body2" sx={{ my: 2 }}>
+                  Already have an account?
+                  <Link
+                     variant="subtitle2"
+                     underline="hover"
+                     sx={{ ml: .5, color: 'blue' }}
+                     onClick={() => onToggleForm()}
+                  >
+                     Sign In
                   </Link>
                </Typography>
 
-               {/* <Stack direction="row" spacing={2}>
-                     <Button
-                        fullWidth
-                        size="large"
-                        color="inherit"
-                        variant="outlined"
-                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-                     >
-                        <GoogleIcon color="error" />
-                     </Button>
-
-                     <Button
-                        fullWidth
-                        size="large"
-                        color="inherit"
-                        variant="outlined"
-                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-                     >
-                        <FaFacebookF size={20} color="#2196f3" />
-                     </Button>
-
-                     <Button
-                        fullWidth
-                        size="large"
-                        color="inherit"
-                        variant="outlined"
-                     // sx={{ borderColor: alpha(theme.palette.grey[500], 0.16) }}
-                     >
-                        <TwitterIcon color="info" />
-                     </Button>
-                  </Stack> */}
-
-               <Divider sx={{ my: 3 }}>
-                  <Typography variant="body2" sx={{ color: 'text.secondary' }}>
-                     OR
-                  </Typography>
-               </Divider>
+               <Divider sx={{ my: 3 }} />
 
                <form onSubmit={onSubmit}>
                   <Stack spacing={3}>
+                     <TextField name="name" label="Your name" onChange={onChange} />
                      <TextField name="email" label="Email address" onChange={onChange} />
 
                      <TextField
@@ -156,13 +134,28 @@ export const AuthForm = () => {
                            ),
                         }}
                      />
+                     
+                     <TextField
+                        name="password2"
+                        label="Confirm your password"
+                        onChange={onChange}
+                        type={showPassword ? 'text' : 'password'}
+                        InputProps={{
+                           endAdornment: (
+                              <InputAdornment position="end">
+                                 <IconButton onClick={() => setShowPassword(!showPassword)} edge="end">
+                                    {showPassword
+                                       ? <VisibilityIcon color='disabled' />
+                                       : <VisibilityOffIcon color='disabled' />}
+                                 </IconButton>
+                              </InputAdornment>
+                           ),
+                        }}
+                     />
+                     
                   </Stack>
 
-                  <Stack direction="row" alignItems="center" justifyContent="flex-end" sx={{ my: 3 }}>
-                     <Link color="info" variant="subtitle2" underline="hover">
-                        Forgot password?
-                     </Link>
-                  </Stack>
+                  <Divider sx={{ my: 3 }} />
 
                   <LoadingButton
                      fullWidth
@@ -170,9 +163,8 @@ export const AuthForm = () => {
                      type="submit"
                      variant="contained"
                      color="primary"
-                     onClick={() => onSubmit}
                   >
-                     Login
+                     Register
                   </LoadingButton>
 
                </form>
