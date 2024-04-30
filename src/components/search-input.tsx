@@ -15,8 +15,6 @@ export const SearchInput = ({
    query,
    onSearch,
    fullWidth = true,
-   placeholder,
-   ...other
 }: Props & TextFieldProps) => {
 
    const [value, setValue] = useDebouncedState(query, onSearch);
@@ -39,7 +37,6 @@ export const SearchInput = ({
             ),
             sx: { borderRadius: 2 }
          }}
-         {...other}
       />
    );
 }

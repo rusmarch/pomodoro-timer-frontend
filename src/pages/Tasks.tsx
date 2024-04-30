@@ -6,9 +6,9 @@ import Typography from '@mui/material/Typography';
 import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
 // import { Spinner } from '../components/Spinner';
 import { TaskItem } from '../components/task-item';
-import { TaskForm } from '../components/TaskForm';
+import { TaskForm } from '../components/task-form';
 import { TimerPopover } from '../components/timer-popover';
-import { SearchInput } from '../components/search-input';
+// import { SearchInput } from '../components/search-input';
 
 import {
    selectAllTasks,
@@ -17,7 +17,6 @@ import {
    selectIsSuccess,
    getAllTask,
    reset,
-   setSearchQuery,
 } from '../features/tasks/taskSlice';
 
 export const Tasks = () => {
@@ -48,16 +47,16 @@ export const Tasks = () => {
    const filteredTasks = tasks.filter((task) =>
       task.title.toLowerCase().includes(searchQuery.toLowerCase()));
 
-   const onSearch = (v: string) => {
-      dispatch(setSearchQuery(v));
-   };
+   // const onSearch = (v: string) => {
+   //    dispatch(setSearchQuery(v));
+   // };
 
    const showCompletedTask = () => {
       setIsCompletedTaskShowing(prev => !prev);
    };
 
    const renderTaskList = (
-      <Stack className="tickets">
+      <Stack>
          {filteredTasks.map(task => (
             !task.complete && <TaskItem key={task._id} task={task} />
          ))}
@@ -80,12 +79,11 @@ export const Tasks = () => {
       <>
          <h1>Tasks List</h1>
          <TaskForm />
-
-         <SearchInput
+         {/* <SearchInput
             query={searchQuery}
             onSearch={onSearch}
             sx={{ mb: 2 }}
-         />
+         /> */}
          <br />
 
          {tasks.length
