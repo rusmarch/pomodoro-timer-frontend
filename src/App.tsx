@@ -12,7 +12,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import { Home } from './pages/Home';
 // import { Login } from './pages/Login';
 // import { Register } from './pages/Register';
-import { Header } from './components/header';
+import { Header } from './components/header-component';
 import { StartScreen } from './components/start-screen';
 import { Tasks } from './pages/Tasks'
 
