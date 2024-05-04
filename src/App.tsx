@@ -14,7 +14,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 // import { Register } from './pages/Register';
 import { Header } from './components/header-component';
 import { StartScreen } from './components/start-screen';
-import { Tasks } from './pages/Tasks'
+import { TasksView } from './components/task/tasks-view';
 
 const darkTheme = createTheme({
   palette: {
@@ -47,7 +47,7 @@ function App() {
           ) : (
             <>
               <Header />
-              <Tasks />
+              <TasksView />
             </>
           )}
         </Stack>

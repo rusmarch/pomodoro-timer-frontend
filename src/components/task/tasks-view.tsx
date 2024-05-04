@@ -3,13 +3,12 @@ import { useEffect, useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
+import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
 // import { Spinner } from '../components/Spinner';
-import { TaskItem } from '../components/task-item';
-import { TaskForm } from '../components/task-form';
-import { TimerPopover } from '../components/timer-popover';
+import { TaskItem } from '../task-item';
+import { AddTaskForm } from './add-task-form';
+import { TimerPopover } from '../timer-popover';
 // import { SearchInput } from '../components/search-input';
-
 import {
    selectAllTasks,
    selectSearchQuery,
@@ -17,9 +16,9 @@ import {
    selectIsSuccess,
    getAllTask,
    reset,
-} from '../features/tasks/taskSlice';
+} from '../../features/tasks/taskSlice';
 
-export const Tasks = () => {
+export const TasksView = () => {
 
    const tasks = useAppSelector(selectAllTasks);
    const searchQuery = useAppSelector(selectSearchQuery);
@@ -78,7 +77,7 @@ export const Tasks = () => {
    return (
       <>
          <h1>Tasks List</h1>
-         <TaskForm />
+         <AddTaskForm />
          {/* <SearchInput
             query={searchQuery}
             onSearch={onSearch}
