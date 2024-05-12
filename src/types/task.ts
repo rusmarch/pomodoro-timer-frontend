@@ -3,13 +3,15 @@ export type Task = {
    user: string,
    title: string, 
    complete: boolean,
-   totalTime: number,
+   workedTime: number,
+   estimatedTime: number,
    __v?: number,
    tags: [] | string[],
 };
 
 export type TaskData = {
-   title: string
+   title: string,
+   estimatedTime?: number,
 };
 
 export type DeleteResponse = {

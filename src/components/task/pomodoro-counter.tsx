@@ -7,11 +7,11 @@ import TimerIcon from '@mui/icons-material/Timer';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { PomodoroAmountValue } from '../../components/task/add-task-form'
+import { PomodoroAmountValue } from './add-task-form';
 
 type Props = {
-  pomodoroAmount: number,
-  setPomodoroAmount: (value: PomodoroAmountValue) => void,
+   pomodoroAmount: number,
+   setPomodoroAmount: (value: PomodoroAmountValue) => void,
 }
 
 export const PomodoroCounter = ({ pomodoroAmount, setPomodoroAmount }: Props) => {

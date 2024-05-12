@@ -5,7 +5,7 @@ import Typography from '@mui/material/Typography';
 
 import { CustomPopover } from './custom-popover/custom-popover';
 import { usePopover } from '../hooks/use-popover';
-import { Timer } from './Timer';
+import { Timer } from './task-timer';
 
 import { useAppSelector } from '../hooks/redux-hooks';
 import { selectIsBreak } from '../features/timer/timerSlice';

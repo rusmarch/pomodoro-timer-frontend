@@ -55,9 +55,9 @@ export const useTimeDisplay = (): ReturnType => {
             if (secondsLeft > 0) {
                dispatch(decrementSecondsLeft());
             } else {
-               if (currentTask && 'totalTime' in currentTask) {
-                  const workedTime = settings.pomodoroTime - secondsLeft;
-                  const updatedTask = { ...currentTask, totalTime: currentTask.totalTime + workedTime }
+               if (currentTask && 'workedTime' in currentTask) {
+                  const totalTime = settings.pomodoroTime - secondsLeft;
+                  const updatedTask = { ...currentTask, workedTime: currentTask.workedTime + totalTime }
                   dispatch(updateTask(updatedTask))
                }
 

@@ -4,11 +4,6 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
 import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
-// import { Spinner } from '../components/Spinner';
-import { TaskItem } from '../task-item';
-import { AddTaskForm } from './add-task-form';
-import { TimerPopover } from '../timer-popover';
-// import { SearchInput } from '../components/search-input';
 import {
    selectAllTasks,
    selectSearchQuery,
@@ -17,6 +12,11 @@ import {
    getAllTask,
    reset,
 } from '../../features/tasks/taskSlice';
+// import { Spinner } from '../components/Spinner';
+import { TaskItem } from '../task-item';
+import { AddTaskForm } from './add-task-form';
+import { TimerPopover } from '../timer-popover';
+// import { SearchInput } from '../components/search-input';
 
 export const TasksView = () => {
 

@@ -5,7 +5,8 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import AddIcon from '@mui/icons-material/Add';
 
-import { useAppDispatch } from '../../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
+import { selectSettings } from '../../features/timer/timerSlice';
 import { createNewTask } from '../../features/tasks/taskSlice';
 import { PomodoroCounter } from './pomodoro-counter';
 
@@ -13,14 +14,17 @@ export type PomodoroAmountValue = 'increment' | 'decrement' | number;
 
 export const AddTaskForm = () => {
 
+   const settings = useAppSelector(selectSettings);
    const dispatch = useAppDispatch();
-   
    const [title, setTitle] = useState<string>('');
    const [pomodoroAmount, setPomodoroAmount] = useState<number>(0);
 
    const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
-      const taskData = { title: title }
+      const taskData = {
+         title,
+         estimatedTime: pomodoroAmount * settings.pomodoroTime,
+      };
       dispatch(createNewTask(taskData));
       // .unwrap()
       // .then((res) => console.table(res))
@@ -57,7 +61,6 @@ export const AddTaskForm = () => {
                   ),
                   endAdornment: (
                      <InputAdornment position="end" >
-                        {/* {renderCounter} */}
                         <PomodoroCounter
                            pomodoroAmount={pomodoroAmount}
                            setPomodoroAmount={countPomodoro}
@@ -71,5 +74,3 @@ export const AddTaskForm = () => {
       </Stack>
    );
 }
-
-// =================================================================================

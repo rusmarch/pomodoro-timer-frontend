@@ -39,9 +39,9 @@ export const Timer = () => {
 
    const onStop = () => {
 
-      if (currentTask && 'totalTime' in currentTask) {
-         const workedTime = settings.pomodoroTime - secondsLeft;
-         const updatedTask = { ...currentTask, totalTime: currentTask.totalTime + workedTime }
+      if (currentTask && 'workedTime' in currentTask) {
+         const totalTime = settings.pomodoroTime - secondsLeft;
+         const updatedTask = { ...currentTask, workedTime: currentTask.workedTime + totalTime }
          dispatch(updateTask(updatedTask))
       }
       dispatch(stop());
@@ -49,7 +49,7 @@ export const Timer = () => {
 
    return (
       <Stack alignItems="center" >
-         {currentTask && 'totalTime' in currentTask &&
+         {currentTask && 'workedTime' in currentTask &&
             <h3>Current task: {currentTask.title}</h3>}
          <h3>{isWorking ? 'WORKING...' : 'Stopped'}</h3>
          <h3>Status Timer: {!isBreak ? 'Pomodoro' : 'Break'}</h3>

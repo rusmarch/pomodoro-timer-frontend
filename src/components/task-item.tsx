@@ -20,6 +20,7 @@ import {
 import {
    selectIsWorking,
    selectIsBreak,
+   selectSettings,
    startTrackingTask,
 } from '../features/timer/timerSlice';
 
@@ -35,6 +36,7 @@ export const TaskItem = ({ task }: Props) => {
    const isWorking = useAppSelector(selectIsWorking);
    const isBreak = useAppSelector(selectIsBreak);
    const currentTask = useAppSelector(selectCurrentTask);
+   const settings = useAppSelector(selectSettings);
    const dispatch = useAppDispatch();
 
    const isTaskTracking = currentTask && ('_id' in currentTask)
@@ -49,11 +51,11 @@ export const TaskItem = ({ task }: Props) => {
    const trackTask = () => {
       dispatch(startTrackingTask());
       dispatch(setCurrentTask(task));
-   };
+   }
 
    const onRemove = (id: string) => {
       dispatch(removeTask(id));
-   };
+   }
 
    return (
       <Card
@@ -68,7 +70,7 @@ export const TaskItem = ({ task }: Props) => {
             py: 1,
             borderRadius: 2,
             backgroundColor: 'primary.main',
-            boxShadow: '0px 3px 6px rgba(0, 0, 0, 0.16)'
+            boxShadow: '0px 3px 6px rgba(0,0, 0, 0.16)'
          }} >
          <Stack display="flex" direction="row">
             <Checkbox
@@ -80,22 +82,34 @@ export const TaskItem = ({ task }: Props) => {
                sx={{ p: .5 }}
             />
             <TrackTaskButton isTaskTracking={isTaskTracking} onTrack={trackTask} />
-            <Box flexDirection="column"  alignContent="center" className="SOME">
+            <Box flexDirection="column" alignContent="center">
                <Typography
                   variant="subtitle1"
                   sx={task.complete ? { textDecoration: "line-through" } : {}}
                >
                   {task.title}
                </Typography>
-               {task.totalTime > 0 &&
-                  <Stack direction="row" justifyContent="flex-start" alignItems="center">
-                     <TimerIcon color="error" sx={{ fontSize: 16 }} /> 
-                     <Typography
-                        fontSize={13}
-                        color="error"
-                     >
-                         &zwj; {task.totalTime} min
-                     </Typography>
+               {(task.workedTime || task.estimatedTime) > 0 &&
+                  <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={.5}>
+                     {task.workedTime > 0 &&
+                        <>
+                           <TimerIcon color="error" sx={{ fontSize: 16 }} />
+                           <Typography fontSize={13}>
+                              &zwj;{task.workedTime / settings.pomodoroTime}
+                           </Typography>
+                        </>
+                     }
+                     {task.workedTime > 0 && task.estimatedTime > 0 && 
+                     <Typography>/</Typography>
+                     }
+                     {task.estimatedTime > 0 &&
+                        <>
+                           <TimerIcon color="disabled" sx={{ fontSize: 16 }} />
+                           <Typography fontSize={13} color="disabled">
+                              &zwj;{task.estimatedTime / settings.pomodoroTime}
+                           </Typography>
+                        </>
+                     }
                   </Stack>
                }
             </Box>
