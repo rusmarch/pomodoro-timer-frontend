@@ -4,7 +4,7 @@ import InputAdornment from '@mui/material/InputAdornment';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { useDebouncedState } from '../hooks/use-debounce-state';
+import { useDebouncedState } from 'src/hooks/use-debounce-state';
 
 type Props = {
    query: string,

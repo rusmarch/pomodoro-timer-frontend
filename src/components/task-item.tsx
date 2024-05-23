@@ -1,31 +1,31 @@
-import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+import Card from '@mui/material/Card';
+import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import { RiDeleteBinLine } from 'react-icons/ri'
-import { BsCircle } from "react-icons/bs";
+import { BsCircle } from 'react-icons/bs';
 import TimerIcon from '@mui/icons-material/Timer';
 
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 import {
    selectCurrentTask,
    removeTask,
    setCurrentTask,
    updateTask,
    complete,
-} from '../features/tasks/taskSlice';
+} from 'src/features/tasks/taskSlice';
 import {
    selectIsWorking,
    selectIsBreak,
    selectSettings,
    startTrackingTask,
-} from '../features/timer/timerSlice';
+} from 'src/features/timer/timerSlice';
 
-import { Task } from "../types/task";
-import { TrackTaskButton } from './track-task-button';
+import { Task } from 'src/types/task';
+import { TrackTaskButton } from 'src/components/track-task-button';
 
 type Props = {
    task: Task

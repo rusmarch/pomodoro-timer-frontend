@@ -1,5 +1,5 @@
 import Avatar, { AvatarProps } from '@mui/material/Avatar';
-import { stringAvatar } from '../utils/avatar-name';
+import { stringAvatar } from 'src/utils/avatar-name';
 
 // ----------------------------------------------------------------------
 

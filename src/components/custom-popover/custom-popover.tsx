@@ -1,6 +1,6 @@
 import Popover from '@mui/material/Popover';
 
-import { MenuPopoverProps } from '../../types/custom-popover';
+import { MenuPopoverProps } from 'src/types/custom-popover';
 
 // ----------------------------------------------------------------------
 

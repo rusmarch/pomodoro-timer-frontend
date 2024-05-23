@@ -3,13 +3,13 @@ import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { CustomPopover } from './custom-popover/custom-popover';
-import { usePopover } from '../hooks/use-popover';
-import { Timer } from './task-timer';
+import { CustomPopover } from 'src/components/custom-popover/custom-popover';
+import { usePopover } from 'src/hooks/use-popover';
+import { Timer } from 'src/components/task-timer';
 
-import { useAppSelector } from '../hooks/redux-hooks';
-import { selectIsBreak } from '../features/timer/timerSlice';
-import { useTimeDisplay } from '../hooks/use-time-display';
+import { useAppSelector } from 'src/hooks/redux-hooks';
+import { selectIsBreak } from 'src/features/timer/timerSlice';
+import { useTimeDisplay } from 'src/hooks/use-time-display';
 
 export const TimerPopover = () => {
 

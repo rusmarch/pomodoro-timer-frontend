@@ -9,12 +9,12 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import PersonOutlinedIcon from '@mui/icons-material/PersonOutlined';
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
-import { usePopover } from '../hooks/use-popover';
-import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import { selectUser, logout, reset } from '../features/auth/authSlice';
+import { usePopover } from 'src/hooks/use-popover';
+import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
+import { selectUser, logout, reset } from 'src/features/auth/authSlice';
 
-import { InitialsAvatar } from './initials-avatar';
-import { CustomPopover } from './custom-popover/custom-popover';
+import { InitialsAvatar } from 'src/components/initials-avatar';
+import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 
 // ----------------------------------------------------------------------
 

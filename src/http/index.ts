@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AuthResponse } from '../types/AuthResponse';
+import { AuthResponse } from 'src/types/AuthResponse';
 
 export const API_URL = `https://pt-server.pp.ua/api`;
 // export const API_URL = `http://localhost:5001/api`;

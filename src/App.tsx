@@ -1,20 +1,17 @@
 import { useEffect } from 'react';
-import './App.css'
+import 'src/App.css'
 
 import Stack from '@mui/material/Stack';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { checkAuth, selectIsAuth } from './features/auth/authSlice';
-import { useAppDispatch, useAppSelector } from './hooks/redux-hooks';
+import { checkAuth, selectIsAuth } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-// import { Home } from './pages/Home';
-// import { Login } from './pages/Login';
-// import { Register } from './pages/Register';
-import { Header } from './components/header-component';
-import { StartScreen } from './components/start-screen';
-import { TasksView } from './components/task/tasks-view';
+import { Header } from 'src/components/header-component';
+import { StartScreen } from 'src/components/start-screen';
+import { TasksView } from 'src/components/task/tasks-view';
 
 const darkTheme = createTheme({
   palette: {

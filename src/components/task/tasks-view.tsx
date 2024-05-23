@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
-import { useAppSelector, useAppDispatch } from '../../hooks/redux-hooks';
+import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import {
    selectAllTasks,
    selectSearchQuery,
@@ -11,12 +11,12 @@ import {
    selectIsSuccess,
    getAllTask,
    reset,
-} from '../../features/tasks/taskSlice';
+} from 'src/features/tasks/taskSlice';
 // import { Spinner } from '../components/Spinner';
-import { TaskItem } from '../task-item';
-import { AddTaskForm } from './add-task-form';
-import { TimerPopover } from '../timer-popover';
-// import { SearchInput } from '../components/search-input';
+import { TaskItem } from 'src/components/task-item';
+import { AddTaskForm } from 'src/components/task/add-task-form';
+import { TimerPopover } from 'src/components/timer-popover';
+// import { SearchInput } from 'src/components/search-input';
 
 export const TasksView = () => {
 

@@ -8,17 +8,17 @@ import SettingsOutlinedIcon from '@mui/icons-material/SettingsOutlined';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 
-import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
+import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import {
   selectSettings,
   setTimerSettings,
   selectIsWorking,
   selectIsPaused,
-} from '../features/timer/timerSlice';
+} from 'src/features/timer/timerSlice';
 
-import { usePopover } from '../hooks/use-popover';
-import { TimerSettings } from '../types/timer';
-import { CustomPopover } from './custom-popover/custom-popover';
+import { usePopover } from 'src/hooks/use-popover';
+import { TimerSettings } from 'src/types/timer';
+import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 
 // ----------------------------------------------------------------------
 

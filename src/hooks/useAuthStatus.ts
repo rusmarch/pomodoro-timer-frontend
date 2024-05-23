@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useAppSelector } from './redux-hooks';
-import { selectUser } from '../features/auth/authSlice';
+import { useAppSelector } from 'src/hooks/redux-hooks';
+import { selectUser } from 'src/features/auth/authSlice';
 
 export const useAuthStatus = () => {
    

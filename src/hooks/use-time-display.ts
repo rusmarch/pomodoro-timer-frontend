@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 
-import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
+import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import {
    selectSecondsLeft,
    selectIsWorking,
@@ -8,13 +8,13 @@ import {
    selectIsBreak,
    stop,
    decrementSecondsLeft,
-} from '../features/timer/timerSlice';
+} from 'src/features/timer/timerSlice';
 import {
    selectCurrentTask,
    updateTask
-} from '../features/tasks/taskSlice';
+} from 'src/features/tasks/taskSlice';
 
-import { formatPopoverTime, formatTimerTime } from '../utils/format-time';
+import { formatPopoverTime, formatTimerTime } from 'src/utils/format-time';
 
 // ----------------------------------------------------------------------
 

@@ -5,10 +5,10 @@ import TextField from '@mui/material/TextField';
 import InputAdornment from '@mui/material/InputAdornment';
 import AddIcon from '@mui/icons-material/Add';
 
-import { useAppDispatch, useAppSelector } from '../../hooks/redux-hooks';
-import { selectSettings } from '../../features/timer/timerSlice';
-import { createNewTask } from '../../features/tasks/taskSlice';
-import { PomodoroCounter } from './pomodoro-counter';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
+import { selectSettings } from 'src/features/timer/timerSlice';
+import { createNewTask } from 'src/features/tasks/taskSlice';
+import { PomodoroCounter } from 'src/components/task/pomodoro-counter';
 
 export type PomodoroAmountValue = 'increment' | 'decrement' | number;
 

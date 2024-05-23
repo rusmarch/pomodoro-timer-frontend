@@ -1,4 +1,4 @@
-import { User } from "./user";
+import { User } from 'src/types/user';
 
 export type AuthResponse = {
    accessToken: string,

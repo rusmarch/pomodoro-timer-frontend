@@ -1,8 +1,8 @@
-import { $api } from "../../http";
+import axios from 'axios';
+import { $api } from 'src/http';
 import { AxiosResponse } from 'axios';
-import { AuthResponse } from "../../types/AuthResponse";
-import { API_URL } from "../../http";
-import axios from "axios";
+import { AuthResponse } from 'src/types/AuthResponse';
+import { API_URL } from 'src/http';
 
 const registration =
    async (

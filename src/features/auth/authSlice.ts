@@ -1,7 +1,7 @@
-import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "../../store/store";
-import { authService } from "./authService";
-import { User, LoginData, RegisterData } from '../../types/user';
+import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { RootState } from 'src/store/store';
+import { authService } from 'src/features/auth/authService';
+import { User, LoginData, RegisterData } from 'src/types/user';
 
 export type authState = {
    user: User | null,

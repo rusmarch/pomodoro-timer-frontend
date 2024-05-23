@@ -21,11 +21,9 @@ import {
    selectMessage,
    reset,
    register,
-} from '../features/auth/authSlice';
-import { useAppSelector, useAppDispatch } from '../hooks/redux-hooks';
-import { RegisterData, RegisterFormData } from '../types/user';
-
-// import { Spinner } from '../components/Spinner';
+} from 'src/features/auth/authSlice';
+import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
+import { RegisterData, RegisterFormData } from 'src/types/user';
 
 type Props = {
    onToggleForm: VoidFunction;

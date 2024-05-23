@@ -1,11 +1,11 @@
 import Stack from '@mui/material/Stack';
 
-import { useAppDispatch, useAppSelector } from '../hooks/redux-hooks';
+import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 
-import { buildStyles, CircularProgressbar } from "react-circular-progressbar";
-import "react-circular-progressbar/dist/styles.css";
+import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
 
-import { selectCurrentTask, updateTask } from '../features/tasks/taskSlice';
+import { selectCurrentTask, updateTask } from 'src/features/tasks/taskSlice';
 import {
    selectSecondsLeft,
    selectIsBreak,
@@ -14,9 +14,9 @@ import {
    startPause,
    stop,
    selectSettings,
-} from '../features/timer/timerSlice';
-import { useTimeDisplay } from '../hooks/use-time-display';
-import { TimerButton } from './timer-button';
+} from 'src/features/timer/timerSlice';
+import { useTimeDisplay } from 'src/hooks/use-time-display';
+import { TimerButton } from 'src/components/timer-button';
 
 // import { TimerState } from '../types/timerTypes';
 

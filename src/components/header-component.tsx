@@ -3,10 +3,10 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
-import { useAppSelector, /* useAppDispatch */ } from '../hooks/redux-hooks';
-import { /* logout, reset, */ selectUser } from '../features/auth/authSlice';
-import { AccountPopover } from './account-popover';
-import { SettingsPopover } from './settings-popover';
+import { useAppSelector, /* useAppDispatch */ } from 'src/hooks/redux-hooks';
+import { /* logout, reset, */ selectUser } from 'src/features/auth/authSlice';
+import { AccountPopover } from 'src/components/account-popover';
+import { SettingsPopover } from 'src/components/settings-popover';
 
 export const Header = () => {
 

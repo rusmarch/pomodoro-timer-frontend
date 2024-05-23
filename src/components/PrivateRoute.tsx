@@ -1,5 +1,5 @@
 import { Navigate, Outlet } from 'react-router-dom';
-import { useAuthStatus } from '../hooks/useAuthStatus';
+import { useAuthStatus } from 'src/hooks/useAuthStatus';
 // import { Spinner } from './Spinner';
 
 export const PrivateRoute = () => {

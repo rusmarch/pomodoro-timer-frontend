@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState } from 'react';
 
-import Stack from "@mui/material/Stack";
-import { LoginForm } from "../pages/login-form";
-import { RegisterForm } from "../pages/register-form";
+import Stack from '@mui/material/Stack';
+import { LoginForm } from 'src/pages/login-form';
+import { RegisterForm } from 'src/pages/register-form';
 
 export const StartScreen = () => {
 

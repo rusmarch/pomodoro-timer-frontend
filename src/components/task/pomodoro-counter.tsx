@@ -1,13 +1,13 @@
-import { useState, MouseEvent } from "react";
+import { useState, MouseEvent } from 'react';
 
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import IconButton from "@mui/material/IconButton";
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
 import TimerIcon from '@mui/icons-material/Timer';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
-import { PomodoroAmountValue } from './add-task-form';
+import { PomodoroAmountValue } from 'src/components/task/add-task-form';
 
 type Props = {
    pomodoroAmount: number,

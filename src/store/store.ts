@@ -1,7 +1,7 @@
-import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit"; 
-import taskSlice from "../features/tasks/taskSlice";
-import timerSlice from "../features/timer/timerSlice";
-import authSlice from "../features/auth/authSlice";
+import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit'; 
+import taskSlice from 'src/features/tasks/taskSlice';
+import timerSlice from 'src/features/timer/timerSlice';
+import authSlice from 'src/features/auth/authSlice';
 
 export const store = configureStore({
    reducer: {
