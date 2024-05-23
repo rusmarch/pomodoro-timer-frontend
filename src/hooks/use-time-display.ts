@@ -11,7 +11,6 @@ import {
 } from '../features/timer/timerSlice';
 import {
    selectCurrentTask,
-   // setCurrentTask,
    updateTask
 } from '../features/tasks/taskSlice';
 
@@ -39,7 +38,7 @@ export const useTimeDisplay = (): ReturnType => {
    const [popoverTime, setPopoverTime] = useState<number>(() => formatPopoverTime(secondsLeft));
 
    // figure out how exactly timerIntervalRef works
-   const timerIntervalRef = useRef<number | null>(null);
+   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
    useEffect(() => {
       timerIntervalRef.current = setInterval(decrementTime, 1000);
@@ -63,12 +62,12 @@ export const useTimeDisplay = (): ReturnType => {
 
                dispatch(stop());
 
-               clearInterval(timerIntervalRef.current as number);
+               clearInterval(timerIntervalRef.current as NodeJS.Timeout);
             }
          }
       }
 
-      return () => clearInterval(timerIntervalRef.current as number);
+      return () => clearInterval(timerIntervalRef.current as NodeJS.Timeout);
 
    }, [
       secondsLeft,

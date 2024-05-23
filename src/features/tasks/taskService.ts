@@ -5,7 +5,7 @@ import { Task, TaskData, DeleteResponse } from '../../types/task'
 const createTask = async (
    taskData: TaskData
    ):Promise<AxiosResponse<Task>> => {
-   return $api.post('/tasks', taskData);
+   return await $api.post('/tasks', taskData);
 }
 
 const getAllTask = async (): Promise<AxiosResponse<Task[]>> => {

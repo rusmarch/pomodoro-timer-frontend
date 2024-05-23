@@ -12,8 +12,6 @@ export const StartScreen = () => {
       setFormDisplay(prev => !prev);
    }
 
-   console.log(formDisplay);
-
    return (
       <Stack alignItems='center' >
          {formDisplay
