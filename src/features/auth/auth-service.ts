@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { $api } from 'src/http';
 import { AxiosResponse } from 'axios';
-import { AuthResponse } from 'src/types/AuthResponse';
+import { AuthResponse } from 'src/types/auth-response';
 import { API_URL } from 'src/http';
 import { LoginData, RegisterData } from 'src/types/user';
 

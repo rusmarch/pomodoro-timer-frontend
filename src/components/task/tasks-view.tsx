@@ -11,11 +11,11 @@ import {
   selectIsSuccess,
   getAllTask,
   reset,
-} from 'src/features/tasks/taskSlice';
+} from 'src/features/tasks/task-slice';
 // import { Spinner } from '../components/Spinner';
-import { TaskItem } from 'src/components/task-item';
+import { TaskItem } from 'src/components/task/task-item';
 import { AddTaskForm } from 'src/components/task/add-task-form';
-import { TimerPopover } from 'src/components/timer-popover';
+import { TimerPopover } from 'src/components/timer/timer-popover';
 // import { SearchInput } from 'src/components/search-input';
 
 export const TasksView = () => {

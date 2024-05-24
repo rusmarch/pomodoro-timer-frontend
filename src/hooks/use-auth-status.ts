@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useAppSelector } from 'src/hooks/redux-hooks';
-import { selectUser } from 'src/features/auth/authSlice';
+import { selectUser } from 'src/features/auth/auth-slice';
 
 export const useAuthStatus = () => {
   const [loggedIn, setLoggedIn] = useState<boolean>(false);

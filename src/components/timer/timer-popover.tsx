@@ -5,10 +5,10 @@ import Typography from '@mui/material/Typography';
 
 import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 import { usePopover } from 'src/hooks/use-popover';
-import { Timer } from 'src/components/task-timer';
+import { Timer } from 'src/components/timer/task-timer';
 
 import { useAppSelector } from 'src/hooks/redux-hooks';
-import { selectIsBreak } from 'src/features/timer/timerSlice';
+import { selectIsBreak } from 'src/features/timer/timer-slice';
 import { useTimeDisplay } from 'src/hooks/use-time-display';
 
 export const TimerPopover = () => {

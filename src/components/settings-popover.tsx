@@ -14,7 +14,7 @@ import {
   setTimerSettings,
   selectIsWorking,
   selectIsPaused,
-} from 'src/features/timer/timerSlice';
+} from 'src/features/timer/timer-slice';
 
 import { usePopover } from 'src/hooks/use-popover';
 import { TimerSettings } from 'src/types/timer';

@@ -11,7 +11,7 @@ import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
 
 import { usePopover } from 'src/hooks/use-popover';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
-import { selectUser, logout, reset } from 'src/features/auth/authSlice';
+import { selectUser, logout, reset } from 'src/features/auth/auth-slice';
 
 import { InitialsAvatar } from 'src/components/initials-avatar';
 import { CustomPopover } from 'src/components/custom-popover/custom-popover';

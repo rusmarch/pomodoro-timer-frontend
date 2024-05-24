@@ -20,7 +20,7 @@ import {
   selectMessage,
   reset,
   login,
-} from 'src/features/auth/authSlice';
+} from 'src/features/auth/auth-slice';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import { LoginData } from 'src/types/user';
 

@@ -8,8 +8,8 @@ import {
   selectIsBreak,
   stop,
   decrementSecondsLeft,
-} from 'src/features/timer/timerSlice';
-import { selectCurrentTask, updateTask } from 'src/features/tasks/taskSlice';
+} from 'src/features/timer/timer-slice';
+import { selectCurrentTask, updateTask } from 'src/features/tasks/task-slice';
 
 import { formatPopoverTime, formatTimerTime } from 'src/utils/format-time';
 

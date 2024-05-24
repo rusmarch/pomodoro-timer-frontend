@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 import { buildStyles, CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
-import { selectCurrentTask, updateTask } from 'src/features/tasks/taskSlice';
+import { selectCurrentTask, updateTask } from 'src/features/tasks/task-slice';
 import {
   selectSecondsLeft,
   selectIsBreak,
@@ -14,16 +14,12 @@ import {
   startPause,
   stop,
   selectSettings,
-} from 'src/features/timer/timerSlice';
+} from 'src/features/timer/timer-slice';
 import { useTimeDisplay } from 'src/hooks/use-time-display';
-import { TimerButton } from 'src/components/timer-button';
-
-// import { TimerState } from '../types/timerTypes';
+import { TimerButton } from 'src/components/timer/timer-button';
 
 const red = '#f54e4e';
 const blue = '#3399ff';
-
-// type TimerProps = Omit<TimerState, 'workedTime' | 'isTrackingInPomodoro'>;
 
 export const Timer = () => {
   const secondsLeft = useAppSelector(selectSecondsLeft);

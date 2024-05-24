@@ -16,16 +16,16 @@ import {
   setCurrentTask,
   updateTask,
   complete,
-} from 'src/features/tasks/taskSlice';
+} from 'src/features/tasks/task-slice';
 import {
   selectIsWorking,
   selectIsBreak,
   selectSettings,
   startTrackingTask,
-} from 'src/features/timer/timerSlice';
+} from 'src/features/timer/timer-slice';
 
 import { Task } from 'src/types/task';
-import { TrackTaskButton } from 'src/components/track-task-button';
+import { TrackTaskButton } from 'src/components/task/track-task-button';
 
 type Props = {
   task: Task;

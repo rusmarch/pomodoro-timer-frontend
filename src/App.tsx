@@ -6,7 +6,7 @@ import { ThemeProvider, createTheme } from '@mui/material/styles';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 
-import { checkAuth, selectIsAuth } from 'src/features/auth/authSlice';
+import { checkAuth, selectIsAuth } from 'src/features/auth/auth-slice';
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 
 import { Header } from 'src/components/header-component';

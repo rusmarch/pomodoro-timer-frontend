@@ -6,8 +6,8 @@ import InputAdornment from '@mui/material/InputAdornment';
 import AddIcon from '@mui/icons-material/Add';
 
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
-import { selectSettings } from 'src/features/timer/timerSlice';
-import { createNewTask } from 'src/features/tasks/taskSlice';
+import { selectSettings } from 'src/features/timer/timer-slice';
+import { createNewTask } from 'src/features/tasks/task-slice';
 import { PomodoroCounter } from 'src/components/task/pomodoro-counter';
 
 export type PomodoroAmountValue = 'increment' | 'decrement' | number;

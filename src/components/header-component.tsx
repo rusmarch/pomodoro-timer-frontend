@@ -4,7 +4,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 
 import { useAppSelector /* useAppDispatch */ } from 'src/hooks/redux-hooks';
-import { /* logout, reset, */ selectUser } from 'src/features/auth/authSlice';
+import { /* logout, reset, */ selectUser } from 'src/features/auth/auth-slice';
 import { AccountPopover } from 'src/components/account-popover';
 import { SettingsPopover } from 'src/components/settings-popover';
 

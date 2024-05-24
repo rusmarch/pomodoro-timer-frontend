@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 import { RootState } from 'src/store/store';
-import { taskService } from 'src/features/tasks/taskService';
+import { taskService } from 'src/features/tasks/task-service';
 import { Task } from 'src/types/task';
 import { CreateTaskData } from 'src/types/task';
 
