@@ -7,11 +7,11 @@ export const formatTimerTime = (time: number): string => {
 };
 
 export const formatPopoverTime = (time: number): number => {
-   let minutes = Math.floor(time / 60);
+  let minutes = Math.floor(time / 60);
 
-   if (minutes === 0 && time <= 59) {
-      minutes = 1;
-   }
+  if (minutes === 0 && time <= 59) {
+    minutes = 1;
+  }
 
-   return minutes;
-} 
+  return minutes;
+};

@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import 'src/App.css'
+import 'src/App.css';
 
 import Stack from '@mui/material/Stack';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
@@ -22,11 +22,10 @@ const darkTheme = createTheme({
     // info: {
     //   main: '#1877F2'
     // },
-  }
+  },
 });
 
 function App() {
-
   const isAuth = useAppSelector(selectIsAuth);
   const dispatch = useAppDispatch();
 
@@ -34,13 +33,19 @@ function App() {
     if (localStorage.getItem('token')) {
       dispatch(checkAuth());
     }
-  }, [])
+  }, [dispatch]);
 
   return (
     <>
-      <ThemeProvider theme={darkTheme} >
-        <Stack sx={{ /* width: '100%', */ height: '100vh',  justifyContent: 'center' }}  >
-          {!isAuth ? (<StartScreen />
+      <ThemeProvider theme={darkTheme}>
+        <Stack
+          sx={{
+            /* width: '100%', */ height: '100vh',
+            justifyContent: 'center',
+          }}
+        >
+          {!isAuth ? (
+            <StartScreen />
           ) : (
             <>
               <Header />

@@ -14,7 +14,7 @@ export function stringToColor(string: string) {
   }
 
   return color;
-};
+}
 
 export const getInitials = (name: string) =>
   name

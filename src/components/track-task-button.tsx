@@ -3,19 +3,23 @@ import PlayCircleIcon from '@mui/icons-material/PlayCircle';
 import TimerIcon from '@mui/icons-material/Timer';
 
 type TrackButtonProps = {
-   isTaskTracking: boolean,
-   onTrack: () => void,
+  isTaskTracking: boolean;
+  onTrack: () => void;
 };
 
-export const TrackTaskButton = ({ onTrack, isTaskTracking }: TrackButtonProps) => {
+export const TrackTaskButton = ({
+  onTrack,
+  isTaskTracking,
+}: TrackButtonProps) => {
+  const iconStyle = { fontSize: 30 };
 
-   const iconStyle = { fontSize: 30 }
-
-   return (
-      <IconButton color='error' onClick={isTaskTracking ? undefined : onTrack}>
-         {isTaskTracking
-            ? <TimerIcon sx={iconStyle} />
-            : <PlayCircleIcon sx={iconStyle} />}
-       </IconButton>
-   );
-}
+  return (
+    <IconButton color="error" onClick={isTaskTracking ? undefined : onTrack}>
+      {isTaskTracking ? (
+        <TimerIcon sx={iconStyle} />
+      ) : (
+        <PlayCircleIcon sx={iconStyle} />
+      )}
+    </IconButton>
+  );
+};

@@ -4,16 +4,9 @@ import { stringAvatar } from 'src/utils/avatar-name';
 // ----------------------------------------------------------------------
 
 type Props = AvatarProps & {
-  title: string
+  title: string;
 };
 
 export const InitialsAvatar = ({ title, ...other }: Props) => {
-
-  return (
-    <Avatar
-      alt={title}
-      { ...stringAvatar(title)}
-      {...other}
-    />
-  );
-}
+  return <Avatar alt={title} {...stringAvatar(title)} {...other} />;
+};

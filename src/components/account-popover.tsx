@@ -19,7 +19,6 @@ import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 // ----------------------------------------------------------------------
 
 export const AccountPopover = () => {
-
   const user = useAppSelector(selectUser);
   const dispatch = useAppDispatch();
   const popover = usePopover();
@@ -27,18 +26,17 @@ export const AccountPopover = () => {
   const onLogout = (): void => {
     dispatch(logout());
     dispatch(reset());
-  }
+  };
 
   return (
     <>
-      {user
-        ? <IconButton
-          onClick={popover.onOpen}
-          sx={{ width: 40, height: 40 }} >
+      {user ? (
+        <IconButton onClick={popover.onOpen} sx={{ width: 40, height: 40 }}>
           {user && <InitialsAvatar title={user?.name} />}
         </IconButton>
-        : <Avatar />
-    }
+      ) : (
+        <Avatar />
+      )}
 
       <CustomPopover
         open={popover.open}
@@ -57,8 +55,7 @@ export const AccountPopover = () => {
           },
         }}
       >
-
-        <Stack sx={{ px: 1.5, backgroundColor: 'primary.main' }} >
+        <Stack sx={{ px: 1.5, backgroundColor: 'primary.main' }}>
           <Box sx={{ px: 2, py: 1.5 }}>
             <Typography variant="subtitle1" noWrap>
               {user?.name}
@@ -70,29 +67,29 @@ export const AccountPopover = () => {
           <Divider sx={{ borderStyle: 'dashed' }} />
 
           <MenuList>
-            <MenuItem /* component={RouterLink} href={paths.dashboard.settings} onClick={onClose} */ >
+            <MenuItem /* component={RouterLink} href={paths.dashboard.settings} onClick={onClose} */
+            >
               <ListItemIcon>
-                <SettingsOutlinedIcon color='error' />
+                <SettingsOutlinedIcon color="error" />
               </ListItemIcon>
               Settings
             </MenuItem>
-            <MenuItem /* component={RouterLink} href={paths.dashboard.account} onClick={onClose} */ >
+            <MenuItem /* component={RouterLink} href={paths.dashboard.account} onClick={onClose} */
+            >
               <ListItemIcon>
-                <PersonOutlinedIcon color='error' />
+                <PersonOutlinedIcon color="error" />
               </ListItemIcon>
               Profile
             </MenuItem>
             <MenuItem onClick={onLogout}>
               <ListItemIcon>
-                <LogoutOutlinedIcon color='error' />
+                <LogoutOutlinedIcon color="error" />
               </ListItemIcon>
               Sign out
             </MenuItem>
           </MenuList>
-
         </Stack>
       </CustomPopover>
     </>
   );
-}
-
+};

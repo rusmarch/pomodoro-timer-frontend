@@ -3,24 +3,20 @@ import { useAppSelector } from 'src/hooks/redux-hooks';
 import { selectUser } from 'src/features/auth/authSlice';
 
 export const useAuthStatus = () => {
-   
-   const [loggedIn, setLoggedIn] = useState<boolean>(false);
-   const [checkingStatus, setCheckingStatus] = useState<boolean>(true);
+  const [loggedIn, setLoggedIn] = useState<boolean>(false);
+  const [checkingStatus, setCheckingStatus] = useState<boolean>(true);
 
-   const user = useAppSelector(selectUser);
+  const user = useAppSelector(selectUser);
 
-   useEffect(() => {
-      
-      if (user) {
-         setLoggedIn(true);
-      } else {
-         setLoggedIn(false);
-      }
+  useEffect(() => {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
 
-      setCheckingStatus(false);
+    setCheckingStatus(false);
+  }, [user]);
 
-   }, [user])
-
-   return { loggedIn, checkingStatus }
-
+  return { loggedIn, checkingStatus };
 };

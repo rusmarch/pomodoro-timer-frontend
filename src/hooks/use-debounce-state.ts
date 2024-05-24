@@ -10,7 +10,7 @@ export const useDebouncedState = <T>(query: T, cb: (v: T) => void) => {
       cb(value);
     }, 500);
     return () => clearTimeout(timeOutId);
-  }, [value, cb])
+  }, [value, cb]);
 
   return [value, setValue] as const;
-}
+};

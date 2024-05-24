@@ -1,32 +1,25 @@
 import { $api } from 'src/http';
-import { Task, TaskData, DeleteResponse } from 'src/types/task'
-import { AxiosResponse } from 'axios';
+import { Task, CreateTaskData, DeleteResponse } from 'src/types/task';
 
-const createTask = async (
-   taskData: TaskData
-   ):Promise<AxiosResponse<Task>> => {
-   return await $api.post('/tasks', taskData);
-}
+const createTask = async (request: CreateTaskData) => {
+  return await $api.post<Task>('/tasks', request);
+};
 
-const getAllTask = async (): Promise<AxiosResponse<Task[]>> => {
-   return await $api.get<Task[]>('/tasks');
-}
+const getAllTask = async () => {
+  return await $api.get<Task[]>('/tasks');
+};
 
-const removeTask = async (
-   taskId: string):
-   Promise<AxiosResponse<DeleteResponse>> => {
-   return $api.delete(`/tasks/${taskId}`);
-}
+const removeTask = async (taskId: string) => {
+  return $api.delete<string>(`/tasks/${taskId}`);
+};
 
-const updateTask = async (
-   updatedTaskData: Task
-): Promise<AxiosResponse<Task>> => {
-   return $api.put(`/tasks/${updatedTaskData._id}`, updatedTaskData);
-}
+const updateTask = async (updatedTaskData: Task) => {
+  return $api.put<Task>(`/tasks/${updatedTaskData._id}`, updatedTaskData);
+};
 
 export const taskService = {
-   createTask,
-   getAllTask,
-   removeTask,
-   updateTask
-}
+  createTask,
+  getAllTask,
+  removeTask,
+  updateTask,
+};

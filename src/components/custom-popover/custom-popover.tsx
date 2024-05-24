@@ -10,7 +10,6 @@ export const CustomPopover = ({
   sx,
   ...other
 }: MenuPopoverProps) => {
-
   return (
     <Popover
       open={Boolean(open)}
@@ -28,8 +27,7 @@ export const CustomPopover = ({
       }}
       {...other}
     >
-
       {children}
     </Popover>
   );
-}
+};

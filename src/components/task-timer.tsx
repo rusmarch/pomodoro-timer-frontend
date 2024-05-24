@@ -7,74 +7,74 @@ import 'react-circular-progressbar/dist/styles.css';
 
 import { selectCurrentTask, updateTask } from 'src/features/tasks/taskSlice';
 import {
-   selectSecondsLeft,
-   selectIsBreak,
-   selectIsWorking,
-   selectIsPaused,
-   startPause,
-   stop,
-   selectSettings,
+  selectSecondsLeft,
+  selectIsBreak,
+  selectIsWorking,
+  selectIsPaused,
+  startPause,
+  stop,
+  selectSettings,
 } from 'src/features/timer/timerSlice';
 import { useTimeDisplay } from 'src/hooks/use-time-display';
 import { TimerButton } from 'src/components/timer-button';
 
 // import { TimerState } from '../types/timerTypes';
 
-const red = "#f54e4e";
-const blue = "#3399ff";
+const red = '#f54e4e';
+const blue = '#3399ff';
 
 // type TimerProps = Omit<TimerState, 'workedTime' | 'isTrackingInPomodoro'>;
 
 export const Timer = () => {
+  const secondsLeft = useAppSelector(selectSecondsLeft);
+  const currentTask = useAppSelector(selectCurrentTask);
+  const isBreak = useAppSelector(selectIsBreak);
+  const isWorking = useAppSelector(selectIsWorking);
+  const isPaused = useAppSelector(selectIsPaused);
+  const settings = useAppSelector(selectSettings);
 
-   const secondsLeft = useAppSelector(selectSecondsLeft);
-   const currentTask = useAppSelector(selectCurrentTask);
-   const isBreak = useAppSelector(selectIsBreak);
-   const isWorking = useAppSelector(selectIsWorking);
-   const isPaused = useAppSelector(selectIsPaused);
-   const settings = useAppSelector(selectSettings);
+  const { timerTime, percentage } = useTimeDisplay();
+  const dispatch = useAppDispatch();
 
-   const { timerTime, percentage } = useTimeDisplay();
-   const dispatch = useAppDispatch();
+  const onStop = () => {
+    if (currentTask && 'workedTime' in currentTask) {
+      const totalTime = settings.pomodoroTime - secondsLeft;
+      const updatedTask = {
+        ...currentTask,
+        workedTime: currentTask.workedTime + totalTime,
+      };
+      dispatch(updateTask(updatedTask));
+    }
+    dispatch(stop());
+  };
 
-   const onStop = () => {
-
-      if (currentTask && 'workedTime' in currentTask) {
-         const totalTime = settings.pomodoroTime - secondsLeft;
-         const updatedTask = { ...currentTask, workedTime: currentTask.workedTime + totalTime }
-         dispatch(updateTask(updatedTask))
-      }
-      dispatch(stop());
-   };
-
-   return (
-      <Stack alignItems="center" >
-         {currentTask && 'workedTime' in currentTask &&
-            <h3>Current task: {currentTask.title}</h3>}
-         <h3>{isWorking ? 'WORKING...' : 'Stopped'}</h3>
-         <h3>Status Timer: {!isBreak ? 'Pomodoro' : 'Break'}</h3>
-         <Stack width={200} height={200} sx={{ m: 2 }}>
-            <CircularProgressbar
-               value={percentage}
-               text={`${timerTime}`}
-               styles={buildStyles({
-                  strokeLinecap: "butt",
-                  pathColor: isBreak ? blue : red,
-                  trailColor: "rgba(255,255,255, 0.2)",
-                  pathTransitionDuration: 0.3,
-               })}
-            ></CircularProgressbar>
-
-         </Stack>
-
-         <TimerButton
-            isWorking={isWorking}
-            isPaused={isPaused}
-            isBreak={isBreak}
-            onStartPause={() => dispatch(startPause())}
-            onStop={onStop}
-         />
-
+  return (
+    <Stack alignItems="center">
+      {currentTask && 'workedTime' in currentTask && (
+        <h3>Current task: {currentTask.title}</h3>
+      )}
+      <h3>{isWorking ? 'WORKING...' : 'Stopped'}</h3>
+      <h3>Status Timer: {!isBreak ? 'Pomodoro' : 'Break'}</h3>
+      <Stack width={200} height={200} sx={{ m: 2 }}>
+        <CircularProgressbar
+          value={percentage}
+          text={`${timerTime}`}
+          styles={buildStyles({
+            strokeLinecap: 'butt',
+            pathColor: isBreak ? blue : red,
+            trailColor: 'rgba(255,255,255, 0.2)',
+            pathTransitionDuration: 0.3,
+          })}
+        ></CircularProgressbar>
       </Stack>
-   );
+
+      <TimerButton
+        isWorking={isWorking}
+        isPaused={isPaused}
+        isBreak={isBreak}
+        onStartPause={() => dispatch(startPause())}
+        onStop={onStop}
+      />
+    </Stack>
+  );
 };

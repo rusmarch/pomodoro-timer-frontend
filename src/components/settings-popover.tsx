@@ -23,7 +23,6 @@ import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 // ----------------------------------------------------------------------
 
 export const SettingsPopover = () => {
-
   const settings = useAppSelector(selectSettings);
   const isWorking = useAppSelector(selectIsWorking);
   const isPaused = useAppSelector(selectIsPaused);
@@ -60,7 +59,6 @@ export const SettingsPopover = () => {
     localStorage.setItem('timerSettings', JSON.stringify(updatedSettings));
   };
 
-
   return (
     <>
       <IconButton
@@ -70,7 +68,7 @@ export const SettingsPopover = () => {
           height: 40,
         }}
       >
-        <SettingsOutlinedIcon color='error' />
+        <SettingsOutlinedIcon color="error" />
       </IconButton>
 
       <CustomPopover
@@ -83,7 +81,7 @@ export const SettingsPopover = () => {
         }}
         sx={{ width: 250 }}
       >
-        <Stack sx={{ pl: 1.5, py: 1, backgroundColor: 'primary.main' }} >
+        <Stack sx={{ pl: 1.5, py: 1, backgroundColor: 'primary.main' }}>
           <Box>
             <Typography variant="subtitle1">Timer Settings</Typography>
             {/* <Typography variant="body2" sx={{ color: 'text.secondary' }} noWrap>
@@ -94,7 +92,6 @@ export const SettingsPopover = () => {
           <Divider sx={{ borderStyle: 'dashed', mb: 2 }} />
 
           <Stack spacing={1}>
-
             {settingsList.map((setting) => (
               <Stack
                 key={setting.name}
@@ -116,14 +113,14 @@ export const SettingsPopover = () => {
                   <IconButton
                     onClick={() => updateSettings(setting.name, 'decrement')}
                     disabled={settingsDisabled}
-                    color='error'
+                    color="error"
                   >
                     <RemoveCircleOutlineIcon fontSize="small" />
                   </IconButton>
 
                   <Typography
                     sx={{
-                      px: .5,
+                      px: 0.5,
                       py: 0,
                       // color: 'green',
                       // border: 2,
@@ -138,19 +135,17 @@ export const SettingsPopover = () => {
                   <IconButton
                     onClick={() => updateSettings(setting.name, 'increment')}
                     disabled={settingsDisabled}
-                    color='error'
+                    color="error"
                   >
                     <AddCircleOutlineIcon fontSize="small" />
                   </IconButton>
                 </Stack>
-
               </Stack>
               // </MenuItem>
             ))}
           </Stack>
-
         </Stack>
-      </CustomPopover >
+      </CustomPopover>
     </>
   );
 };
