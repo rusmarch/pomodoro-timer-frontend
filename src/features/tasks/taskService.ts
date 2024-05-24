@@ -1,5 +1,5 @@
 import { $api } from 'src/http';
-import { Task, CreateTaskData, DeleteResponse } from 'src/types/task';
+import { Task, CreateTaskData } from 'src/types/task';
 
 const createTask = async (request: CreateTaskData) => {
   return await $api.post<Task>('/tasks', request);

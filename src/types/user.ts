@@ -3,14 +3,21 @@ export type LoginData = {
   password: string;
 };
 
-export type RegisterData = LoginData & {
+export type RegisterData = {
   name: string;
+  email: string;
+  password: string;
 };
 
 export type RegisterFormData = RegisterData & {
   password2: string;
 };
 
-export type User = Omit<RegisterData, 'password'> & {
+export type User = {
   id: string;
+  name: string;
+  email: string;
+  isActivated: boolean;
 };
+
+export type UserState = User | null;

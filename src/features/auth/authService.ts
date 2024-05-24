@@ -3,20 +3,14 @@ import { $api } from 'src/http';
 import { AxiosResponse } from 'axios';
 import { AuthResponse } from 'src/types/AuthResponse';
 import { API_URL } from 'src/http';
+import { LoginData, RegisterData } from 'src/types/user';
 
-const registration = async (
-  email: string,
-  password: string,
-  name: string
-): Promise<AxiosResponse<AuthResponse>> => {
-  return $api.post<AuthResponse>('/registration', { email, password, name });
+const registration = async (requestData: RegisterData) => {
+  return $api.post<AuthResponse>('/registration', requestData);
 };
 
-const login = async (
-  email: string,
-  password: string
-): Promise<AxiosResponse<AuthResponse>> => {
-  return $api.post<AuthResponse>('/login', { email, password });
+const login = async (requestData: LoginData) => {
+  return $api.post<AuthResponse>('/login', requestData);
 };
 
 const logout = (): Promise<void> => {

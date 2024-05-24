@@ -39,7 +39,7 @@ export const TaskItem = ({ task }: Props) => {
   const dispatch = useAppDispatch();
 
   const isTaskTracking =
-    currentTask &&
+    currentTask !== null &&
     '_id' in currentTask &&
     currentTask._id === task._id &&
     isWorking &&

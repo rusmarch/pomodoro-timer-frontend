@@ -16,7 +16,6 @@ import { toast } from 'react-toastify';
 import {
   selectUser,
   selectIsAuth,
-  selectIsLoading,
   selectIsError,
   selectMessage,
   reset,
@@ -32,7 +31,6 @@ type Props = {
 export const LoginForm = ({ onToggleForm }: Props) => {
   const user = useAppSelector(selectUser);
   const isAuth = useAppSelector(selectIsAuth);
-  const isLoading = useAppSelector(selectIsLoading);
   const isError = useAppSelector(selectIsError);
   const message = useAppSelector(selectMessage);
   const dispatch = useAppDispatch();
@@ -66,10 +64,6 @@ export const LoginForm = ({ onToggleForm }: Props) => {
     e.preventDefault();
     dispatch(login(formData));
   };
-
-  if (isLoading) {
-    return /* <Spinner /> */;
-  }
 
   return (
     <>
