@@ -1,4 +1,8 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useEffect } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
+import { toast } from 'react-toastify';
 
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -12,17 +16,16 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import LoadingButton from '@mui/lab/LoadingButton';
 
-import { toast } from 'react-toastify';
 import {
   selectUser,
   selectIsAuth,
-  selectIsLoading,
   selectIsError,
   selectMessage,
   reset,
   register,
 } from 'src/features/auth/auth-slice';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
+import { useBoolean } from 'src/hooks/use-boolean';
 import { RegisterData, RegisterFormData } from 'src/types/user';
 
 type Props = {
@@ -32,20 +35,43 @@ type Props = {
 export const RegisterForm = ({ onToggleForm }: Props) => {
   const user = useAppSelector(selectUser);
   const isAuth = useAppSelector(selectIsAuth);
-  const isLoading = useAppSelector(selectIsLoading);
   const isError = useAppSelector(selectIsError);
   const message = useAppSelector(selectMessage);
   const dispatch = useAppDispatch();
+  const showPassword = useBoolean(false);
+  const showPassword2 = useBoolean(false);
 
-  const [formData, setFormData] = useState<RegisterFormData>({
-    email: '',
-    name: '',
-    password: '',
-    password2: '',
+  const registerUserSchema = Yup.object().shape({
+    name: Yup.string()
+      .required('Username is required')
+      .matches(/^[\w.@+-]+$/, 'Invalid username format')
+      .max(150, 'Username must be at most 150 characters')
+      .min(2, 'Username must be at least 2 character'),
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email address')
+      .min(3, 'Email must be at least 3 character')
+      .max(254, 'Email must be at most 254 characters'),
+    password: Yup.string()
+      .required('Password is required')
+      .max(128, 'Password must be at most 128 characters')
+      .min(4, 'Password must be at least 4 character'),
+    password2: Yup.string()
+      .required('Please confirm your password')
+      .oneOf([Yup.ref('password')], 'Passwords do not match'),
   });
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const { email, name, password, password2 } = formData;
+  const defaultValues = {
+    name: '',
+    email: '',
+    password: '',
+    password2: '',
+  };
+
+  const methods = useForm<RegisterFormData>({
+    resolver: yupResolver(registerUserSchema),
+    defaultValues,
+  });
 
   useEffect(() => {
     if (isError) {
@@ -58,31 +84,12 @@ export const RegisterForm = ({ onToggleForm }: Props) => {
     dispatch(reset());
   }, [isError, isAuth, user, message, dispatch]);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    if (password !== password2) {
-      toast.error('Passwords do not match');
-    } else {
-      const registerData: RegisterData = {
-        name,
-        email,
-        password,
-      };
-      dispatch(register(registerData));
-    }
-  };
-
-  if (isLoading) {
-    return /* <Spinner /> */;
-  }
+  const onSubmit = methods.handleSubmit((formData: RegisterFormData) => {
+    const { name, email, password } = formData;
+    const registerData: RegisterData = { name, email, password };
+    dispatch(register(registerData));
+    methods.reset();
+  });
 
   return (
     <>
@@ -109,26 +116,33 @@ export const RegisterForm = ({ onToggleForm }: Props) => {
 
           <form onSubmit={onSubmit}>
             <Stack spacing={3}>
-              <TextField name="name" label="Your name" onChange={onChange} />
               <TextField
-                name="email"
+                {...methods.register('name')}
+                label="Your name"
+                error={!!methods.formState.errors.name}
+                helperText={methods.formState.errors.name?.message}
+              />
+              <TextField
+                {...methods.register('email')}
                 label="Email address"
-                onChange={onChange}
+                error={!!methods.formState.errors.email}
+                helperText={methods.formState.errors.email?.message}
               />
 
               <TextField
-                name="password"
+                {...methods.register('password')}
                 label="Password"
-                onChange={onChange}
-                type={showPassword ? 'text' : 'password'}
+                error={!!methods.formState.errors.password}
+                helperText={methods.formState.errors.password?.message}
+                type={showPassword.value ? 'text' : 'password'}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => showPassword.onToggle()}
                         edge="end"
                       >
-                        {showPassword ? (
+                        {showPassword.value ? (
                           <VisibilityIcon color="disabled" />
                         ) : (
                           <VisibilityOffIcon color="disabled" />
@@ -140,18 +154,19 @@ export const RegisterForm = ({ onToggleForm }: Props) => {
               />
 
               <TextField
-                name="password2"
+                {...methods.register('password2')}
                 label="Confirm your password"
-                onChange={onChange}
-                type={showPassword ? 'text' : 'password'}
+                error={!!methods.formState.errors.password2}
+                helperText={methods.formState.errors.password2?.message}
+                type={showPassword2.value ? 'text' : 'password'}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => showPassword2.onToggle()}
                         edge="end"
                       >
-                        {showPassword ? (
+                        {showPassword2.value ? (
                           <VisibilityIcon color="disabled" />
                         ) : (
                           <VisibilityOffIcon color="disabled" />

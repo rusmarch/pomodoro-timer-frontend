@@ -1,4 +1,7 @@
-import { useState, useEffect, ChangeEvent, FormEvent } from 'react';
+import { useEffect } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useForm } from 'react-hook-form';
+import * as Yup from 'yup';
 
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
@@ -23,6 +26,7 @@ import {
 } from 'src/features/auth/auth-slice';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import { LoginData } from 'src/types/user';
+import { useBoolean } from 'src/hooks/use-boolean';
 
 type Props = {
   onToggleForm: VoidFunction;
@@ -34,13 +38,29 @@ export const LoginForm = ({ onToggleForm }: Props) => {
   const isError = useAppSelector(selectIsError);
   const message = useAppSelector(selectMessage);
   const dispatch = useAppDispatch();
+  const showPassword = useBoolean(false);
 
-  const [formData, setFormData] = useState<LoginData>({
-    email: '',
-    password: '',
+  const loginUserSchema = Yup.object().shape({
+    email: Yup.string()
+      .required('Email is required')
+      .email('Invalid email address')
+      .min(3, 'Email must be at least 3 character')
+      .max(254, 'Email must be at most 254 characters'),
+    password: Yup.string()
+      .required('Password is required')
+      .max(128, 'Password must be at most 128 characters')
+      .min(4, 'Password must be at least 4 character'),
   });
 
-  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const defaultValues = {
+    email: '',
+    password: '',
+  };
+
+  const methods = useForm<LoginData>({
+    resolver: yupResolver(loginUserSchema),
+    defaultValues,
+  });
 
   useEffect(() => {
     if (isError) {
@@ -53,17 +73,10 @@ export const LoginForm = ({ onToggleForm }: Props) => {
     dispatch(reset());
   }, [isError, isAuth, user, message, dispatch]);
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const onSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmit = methods.handleSubmit((formData: LoginData) => {
     dispatch(login(formData));
-  };
+    methods.reset();
+  });
 
   return (
     <>
@@ -91,24 +104,26 @@ export const LoginForm = ({ onToggleForm }: Props) => {
           <form onSubmit={onSubmit}>
             <Stack spacing={3}>
               <TextField
-                name="email"
+                {...methods.register('email')}
                 label="Email address"
-                onChange={onChange}
+                error={!!methods.formState.errors.email}
+                helperText={methods.formState.errors.email?.message}
               />
 
               <TextField
-                name="password"
+                {...methods.register('password')}
                 label="Password"
-                onChange={onChange}
-                type={showPassword ? 'text' : 'password'}
+                error={!!methods.formState.errors.password}
+                helperText={methods.formState.errors.password?.message}
+                type={showPassword.value ? 'text' : 'password'}
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
                       <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => showPassword.onToggle()}
                         edge="end"
                       >
-                        {showPassword ? (
+                        {showPassword.value ? (
                           <VisibilityIcon color="disabled" />
                         ) : (
                           <VisibilityOffIcon color="disabled" />
