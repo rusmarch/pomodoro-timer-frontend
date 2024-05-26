@@ -26,7 +26,6 @@ export const useTimeDisplay = (): ReturnType => {
   const isBreak = useAppSelector(selectIsBreak);
   const isWorking = useAppSelector(selectIsWorking);
   const settings = useAppSelector(selectSettings);
-  // const workedTime = useAppSelector(selectWorkedTime);
   const currentTask = useAppSelector(selectCurrentTask);
   const dispatch = useAppDispatch();
 
@@ -35,7 +34,6 @@ export const useTimeDisplay = (): ReturnType => {
     formatPopoverTime(secondsLeft)
   );
 
-  // figure out how exactly timerIntervalRef works
   const timerIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
@@ -76,7 +74,6 @@ export const useTimeDisplay = (): ReturnType => {
     currentTask,
     settings,
     dispatch,
-    // workedTime,
   ]);
 
   const timerTime = formatTimerTime(secondsLeft);

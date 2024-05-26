@@ -5,9 +5,9 @@ import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import Checkbox from '@mui/material/Checkbox';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import TimerIcon from '@mui/icons-material/Timer';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { BsCircle } from 'react-icons/bs';
-import TimerIcon from '@mui/icons-material/Timer';
 
 import { useAppDispatch, useAppSelector } from 'src/hooks/redux-hooks';
 import {

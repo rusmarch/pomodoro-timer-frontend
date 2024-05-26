@@ -1,15 +1,17 @@
-import IconButton from '@mui/material/IconButton';
-import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
+import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-
-import { CustomPopover } from 'src/components/custom-popover/custom-popover';
-import { usePopover } from 'src/hooks/use-popover';
-import { Timer } from 'src/components/timer/task-timer';
+import IconButton from '@mui/material/IconButton';
 
 import { useAppSelector } from 'src/hooks/redux-hooks';
-import { selectIsBreak } from 'src/features/timer/timer-slice';
+import { usePopover } from 'src/hooks/use-popover';
 import { useTimeDisplay } from 'src/hooks/use-time-display';
+
+import { selectIsBreak } from 'src/features/timer/timer-slice';
+
+import { CustomPopover } from 'src/components/custom-popover/custom-popover';
+import { Timer } from 'src/components/timer/task-timer';
+
 
 export const TimerPopover = () => {
   const isBreak = useAppSelector(selectIsBreak);

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import InputAdornment from '@mui/material/InputAdornment';
 import TextField, { TextFieldProps } from '@mui/material/TextField';
 import SearchIcon from '@mui/icons-material/Search';
@@ -17,8 +15,6 @@ export const SearchInput = ({
   fullWidth = true,
 }: Props & TextFieldProps) => {
   const [value, setValue] = useDebouncedState(query, onSearch);
-
-  // console.log(query);
 
   return (
     <TextField

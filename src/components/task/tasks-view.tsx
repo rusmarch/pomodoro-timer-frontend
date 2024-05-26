@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 
+import { useBoolean } from 'src/hooks/use-boolean';
 import { useAppSelector, useAppDispatch } from 'src/hooks/redux-hooks';
 import {
   selectAllTasks,
   selectSearchQuery,
-  selectIsLoading,
+  // selectIsLoading,
   selectIsSuccess,
   getAllTask,
   reset,
@@ -21,12 +22,11 @@ import { TimerPopover } from 'src/components/timer/timer-popover';
 export const TasksView = () => {
   const tasks = useAppSelector(selectAllTasks);
   const searchQuery = useAppSelector(selectSearchQuery);
-  const isLoading = useAppSelector(selectIsLoading);
+  // const isLoading = useAppSelector(selectIsLoading);
   const isSuccess = useAppSelector(selectIsSuccess);
   const dispatch = useAppDispatch();
+  const isCompletedTaskShowing = useBoolean();
 
-  const [isCompletedTaskShowing, setIsCompletedTaskShowing] =
-    useState<boolean>(false);
   const hasCompletedTask = tasks?.some((task) => task.complete);
 
   useEffect(() => {
@@ -39,8 +39,6 @@ export const TasksView = () => {
 
   useEffect(() => {
     dispatch(getAllTask());
-    // .unwrap()
-    // .then(())
   }, [dispatch]);
 
   const filteredTasks = tasks?.filter((task) =>
@@ -50,10 +48,6 @@ export const TasksView = () => {
   // const onSearch = (v: string) => {
   //    dispatch(setSearchQuery(v));
   // };
-
-  const showCompletedTask = () => {
-    setIsCompletedTaskShowing((prev) => !prev);
-  };
 
   const renderTaskList = (
     <Stack>
@@ -71,10 +65,9 @@ export const TasksView = () => {
     </div>
   );
 
-  if (isLoading) {
-    return /* <Spinner /> */;
-  }
-
+  // if (isLoading) {
+  //   return /* <Spinner /> */;
+  // }
   return (
     <>
       <h1>Tasks List</h1>
@@ -91,12 +84,12 @@ export const TasksView = () => {
           {renderTaskList}
           <br />
           {hasCompletedTask && (
-            <button onClick={() => showCompletedTask()}>
-              {`${isCompletedTaskShowing ? 'Hide' : 'Show'} completed tasks`}
+            <button onClick={isCompletedTaskShowing.onToggle}>
+              {`${isCompletedTaskShowing.value ? 'Hide' : 'Show'} completed tasks`}
             </button>
           )}
 
-          {isCompletedTaskShowing && renderCompletedTaskList}
+          {isCompletedTaskShowing.value && renderCompletedTaskList}
         </>
       ) : (
         <Typography variant="h4" sx={{ my: 2, color: 'text.disabled' }}>

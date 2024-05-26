@@ -1,22 +1,22 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAppSelector } from 'src/hooks/redux-hooks';
 import { selectUser } from 'src/features/auth/auth-slice';
+import { useBoolean } from 'src/hooks/use-boolean';
 
 export const useAuthStatus = () => {
-  const [loggedIn, setLoggedIn] = useState<boolean>(false);
-  const [checkingStatus, setCheckingStatus] = useState<boolean>(true);
-
   const user = useAppSelector(selectUser);
+  const loggedIn = useBoolean();
+  const checkingStatus = useBoolean(true);
 
   useEffect(() => {
     if (user) {
-      setLoggedIn(true);
+      loggedIn.onTrue();
     } else {
-      setLoggedIn(false);
+      loggedIn.onFalse();
     }
 
-    setCheckingStatus(false);
-  }, [user]);
+    checkingStatus.onFalse();
+  }, [user, loggedIn, checkingStatus]);
 
   return { loggedIn, checkingStatus };
 };

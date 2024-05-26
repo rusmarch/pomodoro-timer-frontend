@@ -1,4 +1,4 @@
-import { useState, MouseEvent } from 'react';
+import { MouseEvent } from 'react';
 
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
@@ -7,6 +7,8 @@ import TimerIcon from '@mui/icons-material/Timer';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
+
+import { useBoolean } from 'src/hooks/use-boolean';
 import { PomodoroAmountValue } from 'src/components/task/add-task-form';
 
 type Props = {
@@ -18,7 +20,7 @@ export const PomodoroCounter = ({
   pomodoroAmount,
   setPomodoroAmount,
 }: Props) => {
-  const [isCounterShowed, setIsCounterShowed] = useState<boolean>(false);
+  const showCounter = useBoolean();
 
   const handleMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -44,13 +46,13 @@ export const PomodoroCounter = ({
       )}
       <IconButton
         onMouseDown={handleMouseDown}
-        onClick={() => setIsCounterShowed((prev) => !prev)}
+        onClick={showCounter.onToggle}
         disabled={pomodoroAmount > 5}
         sx={{ px: 0 }}
       >
         <ChevronRightIcon />
       </IconButton>
-      {isCounterShowed && (
+      {showCounter.value && (
         <Stack direction="row" alignItems="center" justifyContent="flex-end">
           <IconButton
             onClick={() => setPomodoroAmount('decrement')}

@@ -25,8 +25,6 @@ export const AddTaskForm = () => {
       estimatedTime: pomodoroAmount * settings.pomodoroTime,
     };
     dispatch(createNewTask(taskData));
-    // .unwrap()
-    // .then((res) => console.table(res))
     setTitle('');
     setPomodoroAmount(0);
   };

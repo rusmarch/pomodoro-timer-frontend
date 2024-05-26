@@ -138,10 +138,7 @@ export const RegisterForm = ({ onToggleForm }: Props) => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => showPassword.onToggle()}
-                        edge="end"
-                      >
+                      <IconButton onClick={showPassword.onToggle} edge="end">
                         {showPassword.value ? (
                           <VisibilityIcon color="disabled" />
                         ) : (
@@ -162,10 +159,7 @@ export const RegisterForm = ({ onToggleForm }: Props) => {
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => showPassword2.onToggle()}
-                        edge="end"
-                      >
+                      <IconButton onClick={showPassword2.onToggle} edge="end">
                         {showPassword2.value ? (
                           <VisibilityIcon color="disabled" />
                         ) : (
