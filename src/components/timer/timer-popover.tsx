@@ -12,7 +12,6 @@ import { selectIsBreak } from 'src/features/timer/timer-slice';
 import { CustomPopover } from 'src/components/custom-popover/custom-popover';
 import { Timer } from 'src/components/timer/task-timer';
 
-
 export const TimerPopover = () => {
   const isBreak = useAppSelector(selectIsBreak);
 

@@ -5,7 +5,7 @@ import { useBoolean } from 'src/hooks/use-boolean';
 
 export const useAuthStatus = () => {
   const user = useAppSelector(selectUser);
-  const loggedIn = useBoolean();
+  const loggedIn = useBoolean(false);
   const checkingStatus = useBoolean(true);
 
   useEffect(() => {

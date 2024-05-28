@@ -25,7 +25,7 @@ export const TasksView = () => {
   // const isLoading = useAppSelector(selectIsLoading);
   const isSuccess = useAppSelector(selectIsSuccess);
   const dispatch = useAppDispatch();
-  const isCompletedTaskShowing = useBoolean();
+  const isCompletedTaskShowing = useBoolean(false);
 
   const hasCompletedTask = tasks?.some((task) => task.complete);
 

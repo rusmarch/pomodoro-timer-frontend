@@ -20,7 +20,7 @@ export const PomodoroCounter = ({
   pomodoroAmount,
   setPomodoroAmount,
 }: Props) => {
-  const showCounter = useBoolean();
+  const showCounter = useBoolean(false);
 
   const handleMouseDown = (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
